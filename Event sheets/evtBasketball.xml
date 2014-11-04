@@ -1,0 +1,1072 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>evtBasketball</name>
+    <events>
+        <variable constant="0" name="bak_isEnd" sid="6156643562175644" static="0" type="number">0</variable>
+        <comment>Whoever is merging please delete this and use the one in mainmanu!!!!</comment>
+        <variable constant="0" name="bak_resetBall" sid="6513887266503141" static="0" type="number">0</variable>
+        <variable constant="0" name="bak_scoring" sid="4495954841799615" static="0" type="number">0</variable>
+        <variable comment="keep tracks of the score" constant="0" name="bak_score" sid="1571452646451946" static="0" type="number">0</variable>
+        <variable constant="0" name="bak_finalPositionX" sid="2977044322048252" static="0" type="number">0</variable>
+        <variable constant="0" name="bak_finalPositionY" sid="9933124165095567" static="0" type="number">0</variable>
+        <variable comment="1 while aiming the pig, 0 while flying" constant="0" name="bak_IsAiming" sid="9515345725070453" static="0" type="number">1</variable>
+        <variable constant="0" name="bak_currentUID" sid="8185141247887988" static="0" type="number">0</variable>
+        <variable comment="0 = not moving, 1 = move down, 2 = move up" constant="0" name="bak_blockDown" sid="8160248155674999" static="0" type="number">0</variable>
+        <variable comment="0 = not moving, 1 = move front, 2 = move back" constant="0" name="bak_blockForward" sid="6448216185200313" static="0" type="number">0</variable>
+        <variable constant="0" name="bak_jumped" sid="2093640073831931" static="0" type="number">0</variable>
+        <variable comment="0 = not moving, 1 = move down, 2 = move up" constant="0" name="bak_moveDown" sid="6907546835986412" static="0" type="number">0</variable>
+        <variable comment="timer for vanishing the shooting ball" constant="0" name="bak_timer0" sid="903216459602822" static="0" type="number">0</variable>
+        <variable comment="records the time of touch/flick" constant="0" name="bak_timerTouch" sid="2112801487004851" static="0" type="number">0</variable>
+        <variable constant="0" name="bak_randomBall" sid="5127554211559999" static="0" type="number">0</variable>
+        <variable constant="0" name="bak_startAnim" sid="426630788606385" static="0" type="number">0</variable>
+        <variable constant="0" name="bak_timerLeft" sid="3228975048507286" static="0" type="number">1800</variable>
+        <variable constant="1" name="bak_INITPOSITIONY" sid="1464096364510734" static="0" type="number">561</variable>
+        <variable constant="1" name="bak_INITPOSITIONX" sid="7050756372749234" static="0" type="number">71</variable>
+        <variable comment="maximum number of basketballs" constant="1" name="bak_MAXBALLCOUNT" sid="6878486468701994" static="0" type="number">5</variable>
+        <comment>On startup we need to increase the quality of the physics processing from 8 &amp; 3 iterations to 12 &amp; 8, otherwise sometimes the towers fall down by themselves.  This can make the game run slower, but is necessary for it to be stable.</comment>
+        <event-block sid="1727179706297752">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="6218341441518399" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="9456177962103893" type="System">
+                    <param id="0" name="Variable">bak_timerLeft</param>
+                    <param id="1" name="Value">1800</param>
+                </action>
+                <action id="-9" name="Set value" sid="2957945943405573" type="System">
+                    <param id="0" name="Variable">bak_score</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="9194956412249014" type="bak_ballNormal">
+                    <param id="0" name="X">BAK_INITPOSITIONX</param>
+                    <param id="1" name="Y">BAK_INITPOSITIONY</param>
+                </action>
+                <action id="-9" name="Set value" sid="7397739107180736" type="System">
+                    <param id="0" name="Variable">bak_currentUID</param>
+                    <param id="1" name="Value">bak_ballNormal.UID</param>
+                </action>
+                <action id="4" name="Set animation" sid="7038453146096655" type="bak_blocker">
+                    <param id="0" name="Animation">&quot;A&quot; &amp; main_side</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="2" name="Stop" sid="3407938328078177" type="bak_blocker" />
+                <action behavior="Pin" id="0" name="Pin to object" sid="6480730770378372" type="bak_restart">
+                    <param id="0" name="Pin to">bak_restart_bg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="3676752849855058" type="bak_quit">
+                    <param id="0" name="Pin to">bak_restart_bg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="2685691423588285" type="bak_finalscore">
+                    <param id="0" name="Pin to">bak_restart_bg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="8403965292555688" type="bak_restartB">
+                    <param id="0" name="Pin to">bak_restart_bg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="1436792487624893" type="bak_quitB">
+                    <param id="0" name="Pin to">bak_restart_bg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="6908531955746093" type="bak_ppmm">
+                    <param id="0" name="Pin to">bak_ppbg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="6442405965201472" type="bak_ppre">
+                    <param id="0" name="Pin to">bak_ppbg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="8262850474819704" type="bak_basketBlock">
+                    <param id="0" name="Pin to">bak_backBoard</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="9608353854762594" type="bak_basketBot">
+                    <param id="0" name="Pin to">bak_backBoard</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="1197114010121041" type="bak_basketNet">
+                    <param id="0" name="Pin to">bak_backBoard</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="7769139801683331" type="bak_basketNetScore">
+                    <param id="0" name="Pin to">bak_backBoard</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="5351406007760882" type="bak_basketTop">
+                    <param id="0" name="Pin to">bak_backBoard</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action id="-2" name="Set Y" sid="4957613697260182" type="bak_backBoard">
+                    <param id="0" name="Y">280</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="121438155084594" type="System">
+                    <param id="0" name="Time scale">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="1072455953051387" type="System">
+                    <param id="0" name="Variable">bak_isEnd</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7061449418450054">
+            <conditions>
+                <condition id="3" name="On touched object" sid="7044307601442091" type="Touch">
+                    <param id="0" name="Object">bak_guideB</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set time scale" sid="1348496976334299" type="System">
+                    <param id="0" name="Time scale">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="6729318797632476" type="System">
+                    <param id="0" name="Variable">bak_isEnd</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="5446834882692401" type="bak_guide" />
+                <action id="-9" name="Destroy" sid="3455962179576856" type="bak_guideB" />
+                <action id="-16" name="Wait" sid="4615380979697898" type="System">
+                    <param id="0" name="Seconds">0.1</param>
+                </action>
+                <action id="-10" name="Set value" sid="5588440334455233" type="bak_bg">
+                    <param id="0" name="Instance variable">canTouch</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="926691785848997" type="System">
+                    <param id="0" name="Variable">bak_IsAiming</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>While aiming, set the pig by the catapult block.</comment>
+        <event-block sid="1414160998226825">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="9092312683917573" type="System">
+                    <param id="0" name="Variable">bak_IsAiming</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>While touching in the aiming stage, position and angle the pig to show the aim.</comment>
+                <event-block sid="7975259154010394">
+                    <conditions>
+                        <condition id="7" name="Compare touch speed" sid="1356141887126934" type="Touch">
+                            <param id="0" name="Touch index">0</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Speed">20</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="2039069792070846" type="System">
+                            <param id="0" name="Variable">bak_finalPositionX</param>
+                            <param id="1" name="Value">Touch.X</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="7527224152449665" type="System">
+                            <param id="0" name="Variable">bak_finalPositionY</param>
+                            <param id="1" name="Value">Touch.Y</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="8182139510437275" type="System">
+                            <param id="0" name="Variable">bak_currentUID</param>
+                            <param id="1" name="Value">bak_ballNormal.UID</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="6931020649439319" type="System">
+                            <param id="0" name="Variable">bak_timerTouch</param>
+                            <param id="1" name="Value">dt</param>
+                        </action>
+                        <action id="-13" name="Set time scale" sid="1277618781572575" type="System">
+                            <param id="0" name="Time scale">1.5</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>When releasing in the aiming stage, set IsAiming to 0 (so the pig is no longer positioned according to aim) then apply an impulse proportional to the aim.</comment>
+                <event-block sid="2814227208899064">
+                    <conditions>
+                        <condition id="1" name="On any touch end" sid="4135138258431819" type="Touch" />
+                        <condition id="-8" name="Compare two values" sid="347879491181697" type="System">
+                            <param id="0" name="First value">bak_ballNormal.UID</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">bak_currentUID</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="6354911205165457" type="bak_bg">
+                            <param id="0" name="Instance variable">canTouch</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="8202445682279233" type="System">
+                            <param id="0" name="Variable">bak_IsAiming</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action behavior="Physics" id="27" name="Set enabled" sid="9793872410388326" type="bak_ballNormal">
+                            <param id="0" name="Mode">1</param>
+                        </action>
+                        <action behavior="Physics" id="12" name="Set world gravity" sid="1749106190580485" type="bak_ballNormal">
+                            <param id="0" name="Gravity">26</param>
+                        </action>
+                        <action id="-8" name="Set angle" sid="4133412493512317" type="bak_ballNormal">
+                            <param id="0" name="Angle">angle(Self.X, Self.Y, bak_finalPositionX, bak_finalPositionY)</param>
+                        </action>
+                        <action behavior="Physics" id="5" name="Apply impulse at angle" sid="9217334586047778" type="bak_ballNormal">
+                            <param id="0" name="Impulse">distance(Self.X, Self.Y, Touch.X, Touch.Y) / (7 -bak_timerTouch * 3)</param>
+                            <param id="1" name="Angle">Self.Angle</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="5734185836106387" type="System">
+                            <param id="0" name="Variable">bak_timerTouch</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action behavior="Physics" id="3" name="Apply impulse" sid="9622375308853297" type="bak_ballNormal">
+                            <param id="0" name="Impulse X">0</param>
+                            <param id="1" name="Implulse Y">-150</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action behavior="Physics" id="3" name="Apply impulse" sid="8087562035669906" type="bak_ballNormal">
+                            <param id="0" name="Impulse X">30</param>
+                            <param id="1" name="Implulse Y">0</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-19" name="Rotate counter-clockwise" sid="4624492687303568" type="bak_ballNormal">
+                            <param id="0" name="Degrees">dt</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="5300366429580339">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="1936322390396767" type="bak_ballNormal">
+                    <param id="0" name="Object">bak_Ground</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="2998534567071351" type="System">
+                    <param id="0" name="Variable">bak_resetBall</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Play" sid="8510340438290599" type="Audio">
+                    <param id="0" name="Audio file">Basketball_bounce_sound_effect</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Reset Shooting Motion</comment>
+        <event-block sid="7854176685208949">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="175148409395045" type="System">
+                    <param id="0" name="First value">bak_timer0</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Second value">0.1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8952362588604374" type="System">
+                    <param id="0" name="Variable">bak_IsAiming</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="9622048292634896" type="System">
+                    <param id="0" name="Variable">bak_timer0</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="2739678397103734" type="System">
+                    <param id="0" name="Variable">bak_resetBall</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="5015800993618996" type="System">
+                    <param id="0" name="Variable">bak_scoring</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="2908611863719121" type="System">
+                    <param id="0" name="Variable">bak_blockDown</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="6793136150947439" type="System">
+                    <param id="0" name="Variable">bak_blockForward</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="6233111424537672" type="System">
+                    <param id="0" name="Variable">bak_jumped</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="2" name="Stop" sid="9825537297087877" type="bak_blocker" />
+                <action id="5" name="Set frame" sid="8973551136659786" type="bak_blocker">
+                    <param id="0" name="Frame number">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="6654614844329561" type="bak_ballNormal">
+                    <param id="0" name="X">BAK_INITPOSITIONX</param>
+                    <param id="1" name="Y">BAK_INITPOSITIONY</param>
+                </action>
+                <action behavior="Physics" id="9" name="Set angular velocity" sid="9418554371628314" type="bak_ballNormal">
+                    <param id="0" name="Angular velocity">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="2368123116123674" type="bak_ballNormal" />
+                <action id="-9" name="Set value" sid="8930395504119016" type="System">
+                    <param id="0" name="Variable">bak_randomBall</param>
+                    <param id="1" name="Value">round(random(0, 0))</param>
+                </action>
+                <action id="-15" name="Set visible" sid="3950946256498829" type="bak_basketNet">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="2742929020598129" type="bak_basketNetScore">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="4839370963398962">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="6259826516854551" type="System">
+                            <param id="0" name="First value">bak_randomBall</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="4299834715785101" type="bak_ballNormal">
+                            <param id="0" name="Object">bak_ballNormal</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-24" name="Move to top" sid="7081367107475194" type="bak_backBoard" />
+                        <action id="-24" name="Move to top" sid="8563312676921749" type="bak_basketTop" />
+                        <action id="-24" name="Move to top" sid="1671310285169978" type="bak_ballNormal" />
+                        <action id="-29" name="Move to object" sid="4984779733376354" type="bak_basketNet">
+                            <param id="0" name="Where">0</param>
+                            <param id="1" name="Object">bak_basketTop</param>
+                        </action>
+                        <action id="-29" name="Move to object" sid="7088549090940589" type="bak_basketNetScore">
+                            <param id="0" name="Where">0</param>
+                            <param id="1" name="Object">bak_basketTop</param>
+                        </action>
+                        <action id="-29" name="Move to object" sid="8126703020883958" type="bak_ballNormal">
+                            <param id="0" name="Where">0</param>
+                            <param id="1" name="Object">bak_basketTop</param>
+                        </action>
+                        <action id="-29" name="Move to object" sid="2721221497591564" type="bak_basketBot">
+                            <param id="0" name="Where">0</param>
+                            <param id="1" name="Object">bak_ballNormal</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1880237920192818">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="6096446694881574" type="System">
+                            <param id="0" name="First value">bak_randomBall</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="4462823682865347" type="bak_ballSuper">
+                            <param id="0" name="Object">bak_ballSuper</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="7421093658012119" type="bak_ballSuper">
+                            <param id="0" name="X">BAK_INITPOSITIONX</param>
+                            <param id="1" name="Y">BAK_INITPOSITIONY</param>
+                        </action>
+                        <action id="-24" name="Move to top" sid="7336684423565223" type="bak_backBoard" />
+                        <action id="-24" name="Move to top" sid="795658203701887" type="bak_basketTop" />
+                        <action id="-24" name="Move to top" sid="8603806607361206" type="bak_ballSuper" />
+                        <action id="-29" name="Move to object" sid="2946346129221678" type="bak_basketNet">
+                            <param id="0" name="Where">0</param>
+                            <param id="1" name="Object">bak_basketTop</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="2775914172647892">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="3301768666412776" type="System">
+                    <param id="0" name="First value">bak_resetBall</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="7761892761470777" type="System">
+                    <param id="0" name="Variable">bak_timer0</param>
+                    <param id="1" name="Value">dt</param>
+                </action>
+                <action id="2" name="Stop" sid="9153519032441141" type="bak_blocker" />
+                <action id="-13" name="Set time scale" sid="8930911440583741" type="System">
+                    <param id="0" name="Time scale">1.0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3123734496172368">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="5936324854847703" type="bak_ballNormal">
+                    <param id="0" name="Object">bak_backBoard</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Physics" id="3" name="Apply impulse" sid="9809517805897536" type="bak_ballNormal">
+                    <param id="0" name="Impulse X">0</param>
+                    <param id="1" name="Implulse Y">50</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Show Time &amp; Score</comment>
+        <event-block sid="2348862434716399">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="6410303558838043" type="System" />
+                <condition id="-14" name="Compare variable" sid="9632964583238713" type="System">
+                    <param id="0" name="Variable">bak_isEnd</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="7233496435126673" type="System">
+                    <param id="0" name="Variable">bak_timerLeft</param>
+                    <param id="1" name="Value">-ceil(dt)</param>
+                </action>
+                <action id="0" name="Set text" sid="7301103188311071" type="bak_timer">
+                    <param id="0" name="Text">floor(bak_timerLeft/60)</param>
+                </action>
+                <action id="0" name="Set text" sid="8226696184180717" type="bak_score">
+                    <param id="0" name="Text">bak_score</param>
+                </action>
+                <action id="-24" name="Move to top" sid="6053936540399284" type="bak_ballNormal" />
+                <action id="-24" name="Move to top" sid="2575769845471459" type="bak_basketTop" />
+                <action id="-29" name="Move to object" sid="6927696581239094" type="bak_basketNet">
+                    <param id="0" name="Where">0</param>
+                    <param id="1" name="Object">bak_basketTop</param>
+                </action>
+                <action id="-29" name="Move to object" sid="9117996409241142" type="bak_basketNetScore">
+                    <param id="0" name="Where">0</param>
+                    <param id="1" name="Object">bak_basketTop</param>
+                </action>
+                <action id="-29" name="Move to object" sid="9441815522992365" type="bak_basketBot">
+                    <param id="0" name="Where">0</param>
+                    <param id="1" name="Object">bak_backBoard</param>
+                </action>
+                <action id="-29" name="Move to object" sid="1418475721794045" type="bak_ballNormal">
+                    <param id="0" name="Where">0</param>
+                    <param id="1" name="Object">bak_basketTop</param>
+                </action>
+                <action id="-29" name="Move to object" sid="6299173903735774" type="bak_basketBot">
+                    <param id="0" name="Where">0</param>
+                    <param id="1" name="Object">bak_ballNormal</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Game Over Screen</comment>
+        <event-block sid="271500457198347">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="2321043741726139" type="System">
+                    <param id="0" name="First value">bak_timerLeft</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="2936659786003343" type="System">
+                    <param id="0" name="Variable">bak_timerLeft</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="2179193398472004" type="bak_backBoard" />
+                <action id="-9" name="Destroy" sid="3886966829169675" type="bak_ballNormal" />
+                <action id="-9" name="Destroy" sid="1374482772357628" type="bak_basketTop" />
+                <action id="-9" name="Destroy" sid="7194018545933398" type="bak_basketBot" />
+                <action id="-9" name="Destroy" sid="9745838909441465" type="bak_basketBlock" />
+                <action id="-9" name="Destroy" sid="3921661816280113" type="bak_blocker" />
+                <action id="-9" name="Destroy" sid="1736738441556251" type="bak_basketNet" />
+                <action id="-9" name="Destroy" sid="9637765401039353" type="bak_basketNetScore" />
+                <action id="-1" name="Set X" sid="684515048294624" type="bak_restart_bg">
+                    <param id="0" name="X">640</param>
+                </action>
+                <action id="0" name="Set text" sid="5918277789890411" type="bak_finalscore">
+                    <param id="0" name="Text">bak_score</param>
+                </action>
+                <action id="0" name="Set text" sid="8832579839538433" type="bak_timer">
+                    <param id="0" name="Text">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="4453465127525471" type="System">
+                    <param id="0" name="Variable">F_isEnd</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block any="1" sid="9579082737520041">
+            <conditions>
+                <condition id="3" name="On touched object" sid="9890041997595667" type="Touch">
+                    <param id="0" name="Object">bak_restartB</param>
+                </condition>
+                <condition id="3" name="On touched object" sid="4554794492912163" type="Touch">
+                    <param id="0" name="Object">bak_ppre</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-26" name="Restart layout" sid="868188854186132" type="System" />
+            </actions>
+        </event-block>
+        <event-block any="1" sid="755143531823002">
+            <conditions>
+                <condition id="3" name="On touched object" sid="1848163721988028" type="Touch">
+                    <param id="0" name="Object">bak_quitB</param>
+                </condition>
+                <condition id="3" name="On touched object" sid="6895897302150172" type="Touch">
+                    <param id="0" name="Object">bak_ppmm</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-25" name="Go to layout (by name)" sid="5769022797609771" type="System">
+                    <param id="0" name="Layout">&quot;main&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Move the basket</comment>
+        <event-block sid="9230384931846254">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="4354983416527401" type="System">
+                    <param id="0" name="First value">bak_score</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Second value">4</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="7277101174683698" type="System">
+                    <param id="0" name="First value">bak_moveDown</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="4018662947637019" type="System">
+                    <param id="0" name="Variable">bak_moveDown</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-24" name="Move to top" sid="6619827522879557" type="bak_basketTop" />
+            </actions>
+        </event-block>
+        <event-block sid="8442945855326405">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="389696853347077" type="System">
+                    <param id="0" name="First value">bak_backBoard.Y</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Second value">350</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="7853297143841223" type="System">
+                    <param id="0" name="Variable">bak_moveDown</param>
+                    <param id="1" name="Value">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5561964677020016">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="6352185137880342" type="System">
+                    <param id="0" name="First value">bak_backBoard.Y</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Second value">215</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="6199177408179886" type="System">
+                    <param id="0" name="Variable">bak_moveDown</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action behavior="Sine" id="1" name="Set period" sid="2917879568608745" type="bak_backBoard">
+                    <param id="0" name="Period">random(0.75,2.25)</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Move the blocker Up and down</comment>
+        <event-block sid="8360839395479807">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="8286368943989936" type="System">
+                    <param id="0" name="First value">bak_score</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Second value">6</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="5847707241513423" type="System">
+                    <param id="0" name="First value">bak_blockDown</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="8391889131054464" type="System">
+                    <param id="0" name="First value">bak_jumped</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="1437777839087106" type="System">
+                    <param id="0" name="Variable">bak_blockDown</param>
+                    <param id="1" name="Value">2</param>
+                </action>
+                <action id="-9" name="Set value" sid="9611249987975301" type="System">
+                    <param id="0" name="Variable">bak_startAnim</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="6880290086646916" type="bak_blocker">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action behavior="Physics" id="27" name="Set enabled" sid="7938621034625205" type="bak_blocker">
+                    <param id="0" name="Mode">1</param>
+                </action>
+                <action id="-8" name="Set angle" sid="7128632750030538" type="bak_blocker">
+                    <param id="0" name="Angle">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3813010389074507">
+            <conditions>
+                <condition id="-2" name="Compare Y" sid="8328789965417642" type="bak_blocker">
+                    <param id="0" name="Comparison">4</param>
+                    <param id="1" name="Y co-ordinate">505</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="2943528425000113" type="System">
+                    <param id="0" name="First value">bak_IsAiming</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="2379045955037084" type="System">
+                    <param id="0" name="First value">bak_jumped</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="5183185981826508" type="System">
+                    <param id="0" name="Variable">bak_blockDown</param>
+                    <param id="1" name="Value">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3905613982491494">
+            <conditions>
+                <condition id="-2" name="Compare Y" sid="5144828338887924" type="bak_blocker">
+                    <param id="0" name="Comparison">3</param>
+                    <param id="1" name="Y co-ordinate">350</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="2841923020140566" type="System">
+                    <param id="0" name="First value">bak_IsAiming</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="3668645376046234" type="System">
+                    <param id="0" name="First value">bak_jumped</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="7297160556122964" type="System">
+                    <param id="0" name="Variable">bak_blockDown</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5293501007123702">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="2057677859569062" type="System">
+                    <param id="0" name="First value">bak_blockDown</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">1</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="8725708380148163" type="System">
+                    <param id="0" name="First value">bak_IsAiming</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="3222740506039956" type="System">
+                    <param id="0" name="First value">bak_jumped</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Physics" id="5" name="Apply impulse at angle" sid="6053768329315059" type="bak_blocker">
+                    <param id="0" name="Impulse">150</param>
+                    <param id="1" name="Angle">90</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="7328379490722508" type="System">
+                    <param id="0" name="Variable">bak_jumped</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="855622763944273">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="2625227983694615" type="System">
+                    <param id="0" name="First value">bak_blockDown</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">2</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="7880650763173056" type="System">
+                    <param id="0" name="First value">bak_IsAiming</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="8703492230619666" type="System">
+                    <param id="0" name="First value">bak_jumped</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="1283881609148089">
+                    <conditions>
+                        <condition id="-4" name="Trigger once while true" sid="9627714081438139" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="8037447635944886">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="6989481763933232" type="System">
+                                    <param id="0" name="Variable">bak_score</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Value">26</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Physics" id="5" name="Apply impulse at angle" sid="8226320068956675" type="bak_blocker">
+                                    <param id="0" name="Impulse">1300</param>
+                                    <param id="1" name="Angle">-90</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9743837052839511">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="3352530383029809" type="System" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Physics" id="5" name="Apply impulse at angle" sid="5325839614172167" type="bak_blocker">
+                                    <param id="0" name="Impulse">1000+15*(bak_score-6)</param>
+                                    <param id="1" name="Angle">-90</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="436109337696679">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="9840751109585146" type="System">
+                    <param id="0" name="First value">bak_startAnim</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">1</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="9134492913738164" type="System">
+                    <param id="0" name="First value">bak_IsAiming</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="9729555639167191" type="System">
+                    <param id="0" name="Variable">bak_startAnim</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="3" name="Start" sid="8008669697932269" type="bak_blocker">
+                    <param id="0" name="From">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5772091016493846">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="3561073088631534" type="System">
+                    <param id="0" name="First value">bak_score</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Second value">10</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="1894760769386746" type="System">
+                    <param id="0" name="First value">bak_blockForward</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="6636854993661494" type="System">
+                    <param id="0" name="Variable">bak_blockForward</param>
+                    <param id="1" name="Value">2</param>
+                </action>
+            </actions>
+            <sub-events>
+                <comment>Move the blocker front and back</comment>
+            </sub-events>
+        </event-block>
+        <event-block sid="993968820656715">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="5369495240093059" type="System">
+                    <param id="0" name="First value">bak_blockForward</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Physics" id="5" name="Apply impulse at angle" sid="9546001722829924" type="bak_blocker">
+                    <param id="0" name="Impulse">7</param>
+                    <param id="1" name="Angle">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8726841616310278">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="6155481201498264" type="System">
+                    <param id="0" name="First value">bak_blockForward</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Physics" id="5" name="Apply impulse at angle" sid="7310361138870568" type="bak_blocker">
+                    <param id="0" name="Impulse">7</param>
+                    <param id="1" name="Angle">180</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2426280332005569">
+            <conditions>
+                <condition id="-1" name="Compare X" sid="4246804843536731" type="bak_blocker">
+                    <param id="0" name="Comparison">3</param>
+                    <param id="1" name="X co-ordinate">700</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="5854523307826441" type="System">
+                    <param id="0" name="Variable">bak_blockForward</param>
+                    <param id="1" name="Value">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1131738760290067">
+            <conditions>
+                <condition id="-1" name="Compare X" sid="8763129060854583" type="bak_blocker">
+                    <param id="0" name="Comparison">4</param>
+                    <param id="1" name="X co-ordinate">900</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="4537918356210565" type="System">
+                    <param id="0" name="Variable">bak_blockForward</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3080464941233075">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="2559878242842528" type="bak_ballNormal">
+                    <param id="0" name="Object">bak_basketTop</param>
+                </condition>
+                <condition id="-2" name="Compare Y" sid="4269054599387214" type="bak_ballNormal">
+                    <param id="0" name="Comparison">3</param>
+                    <param id="1" name="Y co-ordinate">bak_basketTop.Y</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8795572146836406" type="System">
+                    <param id="0" name="Variable">bak_scoring</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7864597401045256">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="701358315053471" type="bak_basketBot">
+                    <param id="0" name="Object">bak_ballNormal</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="9583839786890439" type="System">
+                    <param id="0" name="Variable">bak_scoring</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+                <condition id="-2" name="Compare Y" sid="4358773520538517" type="bak_ballNormal">
+                    <param id="0" name="Comparison">5</param>
+                    <param id="1" name="Y co-ordinate">bak_basketBot.Y</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="7425575582582499" type="System">
+                    <param id="0" name="Variable">bak_score</param>
+                    <param id="1" name="Value">2</param>
+                </action>
+                <action id="0" name="Play" sid="2237220225060241" type="Audio">
+                    <param id="0" name="Audio file">Swish</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="7907999106551657" type="System">
+                    <param id="0" name="Variable">bak_scoring</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Add to" sid="7608062240217144" type="System">
+                    <param id="0" name="Variable">bak_timerLeft</param>
+                    <param id="1" name="Value">300</param>
+                </action>
+                <action id="-15" name="Set visible" sid="1214961646737886" type="bak_basketNet">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="7482131854632861" type="bak_basketNetScore">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="6180898697651092">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="2693404608958722" type="System">
+                            <param id="0" name="First value">bak_ballNormal.Physics.VelocityX / bak_ballNormal.Physics.VelocityY</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Set mirrored" sid="8239609171692266" type="bak_basketNetScore">
+                            <param id="0" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" sid="2751074049371921">
+            <conditions>
+                <condition id="3" name="On touched object" sid="4692333571464489" type="Touch">
+                    <param id="0" name="Object">bak_pauseB</param>
+                </condition>
+                <condition id="0" name="On key pressed" sid="5344883650168716" type="Keyboard">
+                    <param id="0" name="Key">80 (P)</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="3958219940571243">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="4668613814081285" type="bak_pause">
+                            <param id="0" name="Instance variable">isPaused</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="3812479793570778" type="System">
+                            <param id="0" name="Variable">bak_isEnd</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="3396372606349126" type="bak_pause">
+                            <param id="0" name="Animation">&quot;Play&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="3621561929410869" type="bak_ppbg">
+                            <param id="0" name="X">640</param>
+                            <param id="1" name="Y">400</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="7147618678103029" type="System">
+                            <param id="0" name="Seconds">0.01</param>
+                        </action>
+                        <action id="-13" name="Set time scale" sid="8399762335000332" type="System">
+                            <param id="0" name="Time scale">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="3900293355177682" type="bak_pause">
+                            <param id="0" name="Instance variable">isPaused</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="4463198225717069">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="8866839509314293" type="bak_pause">
+                            <param id="0" name="Instance variable">isPaused</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="8289599404316115" type="System">
+                            <param id="0" name="Variable">bak_isEnd</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="974962697368328" type="bak_ppbg">
+                            <param id="0" name="X">1600</param>
+                            <param id="1" name="Y">800</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="9541235270078281" type="bak_pause">
+                            <param id="0" name="Animation">&quot;Pause&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="5372326676279734" type="bak_pause">
+                            <param id="0" name="Instance variable">isPaused</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-13" name="Set time scale" sid="8312084482362293" type="System">
+                            <param id="0" name="Time scale">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="9605300056703789">
+            <conditions>
+                <condition id="0" name="On any touch start" sid="3931125487428814" type="Touch" />
+                <condition id="4" inverted="1" name="Is touching object" sid="4560960686602875" type="Touch">
+                    <param id="0" name="Object">bak_ppre</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" sid="5811247688313299" type="Touch">
+                    <param id="0" name="Object">bak_ppmm</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="3327079588422366" type="bak_pause">
+                    <param id="0" name="Instance variable">isPaused</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="9807431205102967" type="System">
+                    <param id="0" name="Variable">bak_isEnd</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="6232909897743984" type="bak_ppbg">
+                    <param id="0" name="X">1600</param>
+                    <param id="1" name="Y">800</param>
+                </action>
+                <action id="4" name="Set animation" sid="577669107120263" type="bak_pause">
+                    <param id="0" name="Animation">&quot;Pause&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="2668293920160538" type="bak_pause">
+                    <param id="0" name="Instance variable">isPaused</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="7591546204323355" type="System">
+                    <param id="0" name="Time scale">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Simulate Block Action</comment>
+        <event-block sid="6282565043416132">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="7438411973245715" type="bak_ballNormal">
+                    <param id="0" name="Object">bak_blocker</param>
+                </condition>
+                <condition id="-9" name="Is visible" sid="7883686999086248" type="bak_blocker" />
+            </conditions>
+            <actions>
+                <action behavior="Physics" id="3" name="Apply impulse" sid="8116562216403167" type="bak_ballNormal">
+                    <param id="0" name="Impulse X">bak_ballNormal.Physics.VelocityX * (-20) </param>
+                    <param id="1" name="Implulse Y">bak_ballNormal.Physics.VelocityY * (-20) </param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

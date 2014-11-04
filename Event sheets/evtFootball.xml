@@ -1,0 +1,1739 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>evtFootball</name>
+    <events>
+        <variable comment='&quot;Lehigh&quot; or &quot;Laf&quot;' constant="0" name="F_EnemyTeam" sid="8189604120693564" static="0" type="text"></variable>
+        <variable comment="has the game ended?" constant="0" name="F_isEnd" sid="1427104662647221" static="0" type="number">0</variable>
+        <variable comment="score of the game/ distance traveled" constant="0" name="F_Score" sid="7285682438349752" static="0" type="number">0</variable>
+        <variable constant="0" name="F_wave" sid="2848624898562879" static="0" type="number">1</variable>
+        <variable constant="0" name="F_numDumbLimit" sid="273836432479607" static="0" type="number">0</variable>
+        <variable constant="0" name="F_numFastLimit" sid="3143312073541312" static="0" type="number">0</variable>
+        <variable constant="0" name="F_numOddLimit" sid="3764848654495919" static="0" type="number">0</variable>
+        <variable constant="0" name="F_numSmartLimit" sid="827308393039175" static="0" type="number">0</variable>
+        <variable constant="0" name="F_numBigLimit" sid="2855551466496284" static="0" type="number">0</variable>
+        <variable constant="0" name="F_numEnemies" sid="7344030154901021" static="0" type="number">0</variable>
+        <variable constant="0" name="F_numEnemyPassed" sid="2518681596473783" static="0" type="number">0</variable>
+        <variable constant="0" name="F_spawnStage" sid="8018774456646288" static="0" type="number">0</variable>
+        <variable constant="0" name="F_spawnCheck" sid="1960746961357975" static="0" type="number">0</variable>
+        <variable constant="0" name="F_chargeCD" sid="7652567022100535" static="0" type="number">0</variable>
+        <variable constant="0" name="F_chargeCurrentCD" sid="9572448477427725" static="0" type="number">0</variable>
+        <variable constant="0" name="F_timescale" sid="1516510697334188" static="0" type="number">1</variable>
+        <variable constant="0" name="F_gametime" sid="7862755235835967" static="0" type="number">0</variable>
+        <variable constant="0" name="F_defaultspeed" sid="5231820851074225" static="0" type="number">300</variable>
+        <variable constant="1" name="SCREENHEIGHT" sid="9835572613331817" static="0" type="number">800</variable>
+        <variable constant="1" name="SCREENWIDTH" sid="7465395446149433" static="0" type="number">1280</variable>
+        <variable constant="1" name="F_PLAYERSPEED" sid="5874845039124147" static="0" type="number">550</variable>
+        <variable constant="1" name="F_DEFAULTCD" sid="776656638409122" static="0" type="number">8</variable>
+        <comment>Event 1-6 are controls</comment>
+        <event-block any="1" sid="5573613354820345">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="8013698668278591" type="Keyboard">
+                    <param id="0" name="Key">39 (Right arrow)</param>
+                </condition>
+                <condition id="3" name="On touched object" sid="825579960733874" type="Touch">
+                    <param id="0" name="Object">F_RightButton</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="9" name="Set vector X" sid="647453777753648" type="F_Player">
+                    <param id="0" name="Vector X">F_PLAYERSPEED</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block any="1" sid="7759263777129538">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="9560659107208933" type="Keyboard">
+                    <param id="0" name="Key">37 (Left arrow)</param>
+                </condition>
+                <condition id="3" name="On touched object" sid="2263414914247197" type="Touch">
+                    <param id="0" name="Object">F_LeftButton</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="9" name="Set vector X" sid="957049393226081" type="F_Player">
+                    <param id="0" name="Vector X">-F_PLAYERSPEED</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block any="1" sid="2704757188443697">
+            <conditions>
+                <condition id="1" name="On any touch end" sid="4694054562735615" type="Touch" />
+                <condition id="3" name="On key released" sid="7807428348749107" type="Keyboard">
+                    <param id="0" name="Key">37 (Left arrow)</param>
+                </condition>
+                <condition id="3" name="On key released" sid="1376313672014668" type="Keyboard">
+                    <param id="0" name="Key">39 (Right arrow)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="0" name="Stop" sid="7505928942691328" type="F_Player" />
+            </actions>
+        </event-block>
+        <event-block any="1" sid="6112369021974945">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="3977069900159976" type="Keyboard">
+                    <param id="0" name="Key">38 (Up arrow)</param>
+                </condition>
+                <condition id="3" name="On touched object" sid="529004757424706" type="Touch">
+                    <param id="0" name="Object">F_chargeCD</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="8369772561949954">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="2096163130417092" type="System">
+                            <param id="0" name="Variable">F_chargeCurrentCD</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="7981905139817527" type="System">
+                            <param id="0" name="First value">F_timescale</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="4260091035792488" type="F_Player">
+                            <param id="0" name="Instance variable">isCharging</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="9795257017979438" type="F_chargeD">
+                            <param id="0" name="Animation">&quot;charging&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="6" name="Set speed" sid="7934663897137459" type="F_Player">
+                            <param id="0" name="Speed">fps</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="7186116524214703" type="F_Player">
+                            <param id="0" name="Object">F_wind</param>
+                            <param id="1" name="Layer">2</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="8250396719211964" type="System">
+                            <param id="0" name="Variable">F_chargeCD</param>
+                            <param id="1" name="Value">2</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="8935128101499939" type="System">
+                            <param id="0" name="Variable">F_chargeCurrentCD</param>
+                            <param id="1" name="Value">F_chargeCD</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="2833314957800753" type="F_charge">
+                            <param id="0" name="Instance variable">fullCD</param>
+                            <param id="1" name="Value">F_chargeCD</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="9779570862135561" type="System">
+                            <param id="0" name="Seconds">2 + (F_gametime - F_Player.timeLastCharged)*0.005</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="8766144269111641" type="F_wind" />
+                        <action id="6" name="Set speed" sid="8370230405517586" type="F_Player">
+                            <param id="0" name="Speed">12</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="6946650860348658" type="F_Player">
+                            <param id="0" name="Instance variable">timeLastCharged</param>
+                            <param id="1" name="Value">F_gametime</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="874112581061255" type="F_Player">
+                            <param id="0" name="Instance variable">isCharging</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Debug mode!</comment>
+        <event-block sid="3553396578997486">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="2082868292610802" type="Keyboard">
+                    <param id="0" name="Key">68 (D)</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="5075592547013957">
+                    <conditions>
+                        <condition id="-9" name="Is visible" sid="3851505304564984" type="F_DebugText" />
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="2892948289888873" type="F_DebugText">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="8409511746298226" type="CBoxP">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="7126879255762873" type="CBoxB">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="9091053498763143" type="CBoxD">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="3543727139027621" type="CBoxF">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="7424317544759083" type="CBoxO">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="9245907064442626" type="CBoxS">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="3004885691084568" type="PointerB">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="2645659866192966" type="PointerD">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="4584943225992731" type="PointerF">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="1992976398713544" type="PointerO">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="4528455751792865" type="PointerS">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1531254869858784">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="7680216124163153" type="System" />
+                    </conditions>
+                    <actions />
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" sid="4587803439576788">
+            <conditions>
+                <condition id="3" name="On touched object" sid="7404113531187021" type="Touch">
+                    <param id="0" name="Object">F_PauseB</param>
+                </condition>
+                <condition id="0" name="On key pressed" sid="9402427837126487" type="Keyboard">
+                    <param id="0" name="Key">80 (P)</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="9845019757978959">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="8814476034169074" type="F_Pause">
+                            <param id="0" name="Instance variable">isPaused</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="4089977459356441" type="System">
+                            <param id="0" name="Variable">F_isEnd</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set time scale" sid="6869223993923346" type="System">
+                            <param id="0" name="Time scale">1.0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="6719426221068044" type="System">
+                            <param id="0" name="Variable">F_timescale</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="5309341360545893" type="F_Pause">
+                            <param id="0" name="Instance variable">isPaused</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="5674119605681614" type="F_Pause">
+                            <param id="0" name="Animation">&quot;Pause&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="178079699242482" type="F_ppbg">
+                            <param id="0" name="X">1600</param>
+                            <param id="1" name="Y">800</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="6089635345834229">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="6509872375515881" type="System" />
+                        <condition id="-14" name="Compare variable" sid="8126539078383439" type="System">
+                            <param id="0" name="Variable">F_isEnd</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set time scale" sid="7274597689658023" type="System">
+                            <param id="0" name="Time scale">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="9084395752118327" type="System">
+                            <param id="0" name="Variable">F_timescale</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="444349767579121" type="F_Pause">
+                            <param id="0" name="Instance variable">isPaused</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="3984415565436338" type="F_Pause">
+                            <param id="0" name="Animation">&quot;Play&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="8966828275685748" type="F_ppbg">
+                            <param id="0" name="X">640</param>
+                            <param id="1" name="Y">400</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="5629514048888822">
+            <conditions>
+                <condition id="0" name="On any touch start" sid="36989785160247" type="Touch" />
+                <condition id="4" inverted="1" name="Is touching object" sid="3188087016666546" type="Touch">
+                    <param id="0" name="Object">F_ppre</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" sid="3734353911918347" type="Touch">
+                    <param id="0" name="Object">F_ppmm</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="778668652175412" type="F_Pause">
+                    <param id="0" name="Instance variable">isPaused</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="759680514315631" type="System">
+                    <param id="0" name="Variable">F_isEnd</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set time scale" sid="1894043171861379" type="System">
+                    <param id="0" name="Time scale">1.0</param>
+                </action>
+                <action id="-9" name="Set value" sid="6788718198356513" type="System">
+                    <param id="0" name="Variable">F_timescale</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="8551907971752753" type="F_Pause">
+                    <param id="0" name="Instance variable">isPaused</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="4" name="Set animation" sid="5937762407166062" type="F_Pause">
+                    <param id="0" name="Animation">&quot;Pause&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-3" name="Set position" sid="9492370766208909" type="F_ppbg">
+                    <param id="0" name="X">1600</param>
+                    <param id="1" name="Y">800</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Spawning~~</comment>
+        <event-block sid="7055820670249791">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="697267931537051" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="1437541996020097">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="7732133365007759" type="System">
+                            <param id="0" name="Variable">F_spawnStage</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="9309003350269709" type="System">
+                            <param id="0" name="Variable">F_numDumbLimit</param>
+                            <param id="1" name="Value">4+floor((F_wave-2+3)/3)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3508753231022598" type="System">
+                            <param id="0" name="Variable">F_numFastLimit</param>
+                            <param id="1" name="Value">floor((F_wave-3+5)/5)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="8983575862737362" type="System">
+                            <param id="0" name="Variable">F_numOddLimit</param>
+                            <param id="1" name="Value">floor((F_wave-5+13)/13)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3681313069875435" type="System">
+                            <param id="0" name="Variable">F_numSmartLimit</param>
+                            <param id="1" name="Value">floor((F_wave-9+17)/17)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="7656712575958587">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="950546661011739" type="System">
+                                    <param id="0" name="First value">F_wave%10</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="5561296759111221" type="System">
+                                    <param id="0" name="Variable">F_numBigLimit</param>
+                                    <param id="1" name="Value">floor((F_wave-10+15)/15)</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="5801993974330109" type="System">
+                                    <param id="0" name="Variable">F_numDumbLimit</param>
+                                    <param id="1" name="Value">ceil(F_numDumbLimit*0.75)</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="3283325502930805" type="System">
+                                    <param id="0" name="Variable">F_numFastLimit</param>
+                                    <param id="1" name="Value">ceil(F_numFastLimit*0.75)</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="2909620423941223" type="System">
+                                    <param id="0" name="Variable">F_numOddLimit</param>
+                                    <param id="1" name="Value">ceil(F_numOddLimit*0.75)</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="4633162078814544" type="System">
+                                    <param id="0" name="Variable">F_numSmartLimit</param>
+                                    <param id="1" name="Value">ceil(F_numSmartLimit*0.75)</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="8990481554838352" type="System">
+                                    <param id="0" name="Variable">F_spawnStage</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9318938655982398">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="5651739387716352" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="9505313639479159" type="System">
+                                    <param id="0" name="Variable">F_numBigLimit</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="7662416328871226" type="System">
+                                    <param id="0" name="Variable">F_spawnStage</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="2700971207054195">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="9177300009232017" type="System">
+                            <param id="0" name="Variable">F_spawnStage</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="6199102331171487">
+                            <conditions>
+                                <condition id="-10" name="For" sid="9536935386242521" type="System">
+                                    <param id="0" name="Name">&quot;&quot;</param>
+                                    <param id="1" name="Start index">1</param>
+                                    <param id="2" name="End index">F_numDumbLimit</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="8725609769675511" type="F_Anchor">
+                                    <param id="0" name="Object">theDumbOne</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="1447504056762924" type="theDumbOne">
+                                    <param id="0" name="Animation">F_EnemyTeam</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" sid="5798572127646452" type="theDumbOne">
+                                    <param id="0" name="Pin to">CBoxD</param>
+                                    <param id="1" name="Mode">1</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="4202368079876439" type="System">
+                                    <param id="0" name="Variable">F_spawnCheck</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="8692007503743181">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="3385806551866237" type="System">
+                                    <param id="0" name="Variable">F_numFastLimit</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="3744735437001451">
+                                    <conditions>
+                                        <condition id="-10" name="For" sid="2830143090286683" type="System">
+                                            <param id="0" name="Name">&quot;&quot;</param>
+                                            <param id="1" name="Start index">1</param>
+                                            <param id="2" name="End index">F_numFastLimit</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Spawn another object" sid="5665714959101098" type="F_Anchor">
+                                            <param id="0" name="Object">theFastOne</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="Image point">0</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="9949048268894792" type="theFastOne">
+                                            <param id="0" name="Animation">F_EnemyTeam</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action behavior="Pin" id="0" name="Pin to object" sid="6166705485632474" type="theFastOne">
+                                            <param id="0" name="Pin to">CBoxF</param>
+                                            <param id="1" name="Mode">1</param>
+                                        </action>
+                                        <action id="-10" name="Add to" sid="1252251151391936" type="System">
+                                            <param id="0" name="Variable">F_spawnCheck</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="9205993450462012">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="8656140903589682" type="System">
+                                    <param id="0" name="Variable">F_numOddLimit</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="6480873500216324">
+                                    <conditions>
+                                        <condition id="-10" name="For" sid="9716509531873613" type="System">
+                                            <param id="0" name="Name">&quot;&quot;</param>
+                                            <param id="1" name="Start index">1</param>
+                                            <param id="2" name="End index">F_numOddLimit</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Spawn another object" sid="4840426654751333" type="F_Anchor">
+                                            <param id="0" name="Object">theOddOne</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="Image point">0</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="7878527533972626" type="theOddOne">
+                                            <param id="0" name="Animation">F_EnemyTeam</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action behavior="Pin" id="0" name="Pin to object" sid="4080583848369555" type="theOddOne">
+                                            <param id="0" name="Pin to">CBoxO</param>
+                                            <param id="1" name="Mode">0</param>
+                                        </action>
+                                        <action id="-10" name="Add to" sid="1748142015378446" type="System">
+                                            <param id="0" name="Variable">F_spawnCheck</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="4186204597090973">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="1973638871617739" type="System">
+                                    <param id="0" name="Variable">F_numSmartLimit</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="1011200498770926">
+                                    <conditions>
+                                        <condition id="-10" name="For" sid="9296506090729409" type="System">
+                                            <param id="0" name="Name">&quot;&quot;</param>
+                                            <param id="1" name="Start index">1</param>
+                                            <param id="2" name="End index">F_numSmartLimit</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Spawn another object" sid="7506074740458937" type="F_Anchor">
+                                            <param id="0" name="Object">theSmartOne</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="Image point">0</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="5991981109677233" type="theSmartOne">
+                                            <param id="0" name="Animation">F_EnemyTeam</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action behavior="Pin" id="0" name="Pin to object" sid="4179463365702642" type="theSmartOne">
+                                            <param id="0" name="Pin to">CBoxS</param>
+                                            <param id="1" name="Mode">1</param>
+                                        </action>
+                                        <action id="-10" name="Add to" sid="741115789914204" type="System">
+                                            <param id="0" name="Variable">F_spawnCheck</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="4895647825270724">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="8635927887023763" type="System">
+                                    <param id="0" name="Variable">F_numBigLimit</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="4058655685815494">
+                                    <conditions>
+                                        <condition id="-10" name="For" sid="6894263546270895" type="System">
+                                            <param id="0" name="Name">&quot;&quot;</param>
+                                            <param id="1" name="Start index">1</param>
+                                            <param id="2" name="End index">F_numBigLimit</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Spawn another object" sid="4519396354929016" type="F_Anchor">
+                                            <param id="0" name="Object">theBigOne</param>
+                                            <param id="1" name="Layer">1</param>
+                                            <param id="2" name="Image point">0</param>
+                                        </action>
+                                        <action id="4" name="Set animation" sid="6218097839871189" type="theBigOne">
+                                            <param id="0" name="Animation">F_EnemyTeam</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                        <action id="-10" name="Add to" sid="167974471274619" type="System">
+                                            <param id="0" name="Variable">F_spawnCheck</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="5901153186934332">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="3387231478655616" type="System">
+                                    <param id="0" name="Variable">F_spawnCheck</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">F_numDumbLimit + F_numFastLimit +F_numOddLimit +F_numSmartLimit +F_numBigLimit</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="9542146797976875" type="System">
+                                    <param id="0" name="Variable">F_spawnCheck</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="6372574104920473" type="System">
+                                    <param id="0" name="Variable">F_spawnStage</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment></comment>
+                <event-block sid="5651445219135401">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="8927455745187489" type="System">
+                            <param id="0" name="Variable">F_spawnStage</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="386448078933678">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="6838708240407848" type="System">
+                                    <param id="0" name="Object">theDumbOne</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="5184340261952663" type="theDumbOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="8061821403730446" type="CBoxD">
+                                    <param id="0" name="X">random(SCREENWIDTH-theDumbOne.Width)+theDumbOne.Width/2</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="5018242607345064" type="PointerD">
+                                    <param id="0" name="X">CBoxD.X</param>
+                                    <param id="1" name="Y">PointerD.Height/2</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="8477517391481174" type="theDumbOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="623591950536195" type="System">
+                                    <param id="0" name="Variable">F_spawnCheck</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="5765530305725439">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="6518643419785326" type="System">
+                                    <param id="0" name="Object">theFastOne</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="5520030072020052" type="theFastOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="2795008395813123" type="CBoxF">
+                                    <param id="0" name="X">random(SCREENWIDTH-theFastOne.Width)+theFastOne.Width/2</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="8160191109988284" type="PointerF">
+                                    <param id="0" name="X">CBoxF.X</param>
+                                    <param id="1" name="Y">PointerF.Height/2</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="6117463513423497" type="theFastOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="8714403560263335" type="System">
+                                    <param id="0" name="Variable">F_spawnCheck</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3084112856953605">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="2674291115944881" type="System">
+                                    <param id="0" name="Object">theOddOne</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="5272060439317501" type="theOddOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="4664480220763115" type="theOddOne">
+                                    <param id="0" name="Instance variable">isToRight</param>
+                                    <param id="1" name="Value">floor(random(2))</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="5963437770869518">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="718138221753469" type="theOddOne">
+                                            <param id="0" name="Instance variable">isToRight</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Set position" sid="6533274637878868" type="CBoxO">
+                                            <param id="0" name="X">SCREENWIDTH+theOddOne.Width/2</param>
+                                            <param id="1" name="Y">random(SCREENHEIGHT/4,SCREENHEIGHT/2-theOddOne.Height)+theOddOne.Height/2</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="4132031413086628" type="PointerO">
+                                            <param id="0" name="Angle">90</param>
+                                        </action>
+                                        <action id="-3" name="Set position" sid="5573894943552053" type="PointerO">
+                                            <param id="0" name="X">SCREENWIDTH-PointerO.Width/2</param>
+                                            <param id="1" name="Y">CBoxO.Y</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="7155257502227652" type="theOddOne">
+                                            <param id="0" name="Instance variable">spawntag</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="-10" name="Add to" sid="7233357643437217" type="System">
+                                            <param id="0" name="Variable">F_spawnCheck</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="6250622579491772">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="6265077751350919" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Set position" sid="8721411179921263" type="CBoxO">
+                                            <param id="0" name="X">-theOddOne.Width/2</param>
+                                            <param id="1" name="Y">random(SCREENHEIGHT/4,SCREENHEIGHT/2-theOddOne.Height)+theOddOne.Height/2</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="888429746009138" type="PointerO">
+                                            <param id="0" name="Angle">-90</param>
+                                        </action>
+                                        <action id="-3" name="Set position" sid="8377533517004031" type="PointerO">
+                                            <param id="0" name="X">PointerO.Width/2</param>
+                                            <param id="1" name="Y">CBoxO.Y</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="8294212224525505" type="theOddOne">
+                                            <param id="0" name="Instance variable">spawntag</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="-10" name="Add to" sid="9873338841524544" type="System">
+                                            <param id="0" name="Variable">F_spawnCheck</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="8819630542461362">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="1135039076336546" type="System">
+                                    <param id="0" name="Object">theSmartOne</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="2297790593121774" type="theSmartOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="414702406661215" type="CBoxS">
+                                    <param id="0" name="X">random(SCREENWIDTH-theSmartOne.Width)+theSmartOne.Width/2</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="7934454622334878" type="PointerS">
+                                    <param id="0" name="X">CBoxS.X</param>
+                                    <param id="1" name="Y">PointerS.Height/2</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="8697657121479175" type="theSmartOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="9903103545382613" type="System">
+                                    <param id="0" name="Variable">F_spawnCheck</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="2868150653645938">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="1876467459119024" type="System">
+                                    <param id="0" name="Object">theBigOne</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="3545573227128664" type="theBigOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Set position" sid="4485129001397307" type="theBigOne">
+                                    <param id="0" name="X">random(SCREENWIDTH-theBigOne.Width)+theBigOne.Width/2</param>
+                                    <param id="1" name="Y">-theBigOne.Height/2</param>
+                                </action>
+                                <action id="-4" name="Set position to another object" sid="4403714502071507" type="CBoxB">
+                                    <param id="0" name="Object">theBigOne</param>
+                                    <param id="1" name="Image point (optional)">0</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="3754648019909388" type="PointerB">
+                                    <param id="0" name="X">theBigOne.X</param>
+                                    <param id="1" name="Y">PointerB.Height/2</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="7539202651111061" type="theBigOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="5996884158692541" type="System">
+                                    <param id="0" name="Variable">F_spawnCheck</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4448902260768982">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="1704163280714804" type="System">
+                                    <param id="0" name="Variable">F_spawnCheck</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">F_numDumbLimit + F_numFastLimit +F_numOddLimit +F_numSmartLimit +F_numBigLimit</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="992315454122736" type="System">
+                                    <param id="0" name="Variable">F_spawnCheck</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="701697177627153" type="System">
+                                    <param id="0" name="Variable">F_spawnStage</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="6698613749807138">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="7182342811249778" type="System">
+                            <param id="0" name="Variable">F_spawnStage</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="1143449440059185" type="System">
+                            <param id="0" name="Variable">F_spawnStage</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="9189714706086464">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="2877692368374187" type="System">
+                                    <param id="0" name="Object">theDumbOne</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="2934956951343142" type="theDumbOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" sid="6919866462828903" type="System">
+                                    <param id="0" name="Seconds">0.1+random(F_wave*0.05, F_wave*0.175)</param>
+                                </action>
+                                <action behavior="8Direction" id="10" name="Set vector Y" sid="3249305775587345" type="CBoxD">
+                                    <param id="0" name="Vector Y">F_DEFAULTSPEED</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="6721105399181166" type="theDumbOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Value">2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="3163406197145575">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="9996247776333218" type="System">
+                                    <param id="0" name="Object">theFastOne</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="6894620693502743" type="theFastOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" sid="1418813956657687" type="System">
+                                    <param id="0" name="Seconds">0.1+random(F_wave*0.05, F_wave*0.175)</param>
+                                </action>
+                                <action behavior="8Direction" id="10" name="Set vector Y" sid="8054280694831746" type="CBoxF">
+                                    <param id="0" name="Vector Y">random(1.5*F_DEFAULTSPEED,2.5*F_DEFAULTSPEED)</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="5275069013188867" type="theFastOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Value">2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="4555127388986943">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="4674899098431118" type="System">
+                                    <param id="0" name="Object">theOddOne</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="8120675706778929" type="theOddOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" sid="8101523514243662" type="System">
+                                    <param id="0" name="Seconds">0.1+random(F_wave*0.05, F_wave*0.175)</param>
+                                </action>
+                                <action behavior="8Direction" id="10" name="Set vector Y" sid="2476671928502109" type="CBoxO">
+                                    <param id="0" name="Vector Y">1.25*F_DEFAULTSPEED</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="5426845287358147">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="7356037978193011" type="theOddOne">
+                                            <param id="0" name="Instance variable">isToRight</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="8Direction" id="9" name="Set vector X" sid="8064867169119092" type="CBoxO">
+                                            <param id="0" name="Vector X">-random(1.25*F_DEFAULTSPEED,1.5*F_DEFAULTSPEED)</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="695832249963105" type="CBoxO">
+                                            <param id="0" name="Angle">90</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="4323300201964061" type="theOddOne">
+                                            <param id="0" name="Instance variable">spawntag</param>
+                                            <param id="1" name="Value">2</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="6792506265077386">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="7293262744864792" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="8Direction" id="9" name="Set vector X" sid="7724998762282612" type="CBoxO">
+                                            <param id="0" name="Vector X">random(1.25*F_DEFAULTSPEED,1.5*F_DEFAULTSPEED)</param>
+                                        </action>
+                                        <action id="-8" name="Set angle" sid="206387464725742" type="CBoxO">
+                                            <param id="0" name="Angle">-90</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="3706819393685482" type="theOddOne">
+                                            <param id="0" name="Instance variable">spawntag</param>
+                                            <param id="1" name="Value">2</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="3629702291925513">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="5158358291406503" type="System">
+                                    <param id="0" name="Object">theSmartOne</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="7761083288853172" type="theSmartOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" sid="9552183246523636" type="System">
+                                    <param id="0" name="Seconds">0.1+random(F_wave*0.05, F_wave*0.175)</param>
+                                </action>
+                                <action behavior="8Direction" id="10" name="Set vector Y" sid="4228318724769774" type="CBoxS">
+                                    <param id="0" name="Vector Y">F_DEFAULTSPEED*1.25</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="1779347119400613" type="theSmartOne">
+                                    <param id="0" name="Instance variable">canMove</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="9077585192475411" type="theSmartOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Value">2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="8526758317448571">
+                            <conditions>
+                                <condition id="-11" name="For Each" sid="7608695112848733" type="System">
+                                    <param id="0" name="Object">theBigOne</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="9112770886910669" type="theBigOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" sid="5041247842296092" type="System">
+                                    <param id="0" name="Seconds">0.1+random(F_wave*0.05, F_wave*0.175)</param>
+                                </action>
+                                <action behavior="8Direction" id="10" name="Set vector Y" sid="191850958367823" type="theBigOne">
+                                    <param id="0" name="Vector Y">F_DEFAULTSPEED</param>
+                                </action>
+                                <action behavior="8Direction" id="10" name="Set vector Y" sid="5397863152168738" type="CBoxB">
+                                    <param id="0" name="Vector Y">theBigOne.8Direction.VectorY</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="3298965762430482" type="theBigOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Value">2</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="1599317682576839" type="System">
+                                    <param id="0" name="Variable">F_spawnCheck</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="4035601616520859">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="6367415676994837" type="System">
+                            <param id="0" name="Variable">F_spawnStage</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">4</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="2265154596676274">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="8530111589256992" type="System">
+                                    <param id="0" name="Variable">F_numEnemies</param>
+                                    <param id="1" name="Comparison">3</param>
+                                    <param id="2" name="Value">floor(0.25*(F_numDumbLimit + F_numFastLimit +F_numOddLimit +F_numSmartLimit +F_numBigLimit))</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="951221080886502" type="System">
+                                    <param id="0" name="Variable">F_spawnCheck</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="1188259172956406" type="System">
+                                    <param id="0" name="Variable">F_wave</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="4908720026382186" type="System">
+                                    <param id="0" name="Variable">F_spawnStage</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="2740581765982131" type="System">
+                                    <param id="0" name="Variable">F_defaultspeed</param>
+                                    <param id="1" name="Value">floor((-1/(F_wave+41/11)+1)*410)</param>
+                                </action>
+                                <action behavior="8Direction" id="10" name="Set vector Y" sid="3872269214370437" type="F_Background1">
+                                    <param id="0" name="Vector Y">F_DEFAULTSPEED</param>
+                                </action>
+                                <action behavior="8Direction" id="10" name="Set vector Y" sid="4799387762296744" type="F_Background2">
+                                    <param id="0" name="Vector Y">F_DEFAULTSPEED</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="2209438448928262">
+                            <conditions>
+                                <condition id="-4" name="Trigger once while true" sid="3651628280071666" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-16" name="Wait" sid="6471158481821008" type="System">
+                                    <param id="0" name="Seconds">0.1+F_wave*0.05</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="7553168216848067" type="F_Anchor">
+                                    <param id="0" name="Object">theDumbOne</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="7329201943382427" type="theDumbOne">
+                                    <param id="0" name="Instance variable">spawntag</param>
+                                    <param id="1" name="Value">2</param>
+                                </action>
+                                <action id="4" name="Set animation" sid="5463499314260223" type="theDumbOne">
+                                    <param id="0" name="Animation">F_EnemyTeam</param>
+                                    <param id="1" name="From">1</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" sid="5926430574312629" type="theDumbOne">
+                                    <param id="0" name="Pin to">CBoxD</param>
+                                    <param id="1" name="Mode">1</param>
+                                </action>
+                                <action id="-1" name="Set X" sid="1723700002049382" type="CBoxD">
+                                    <param id="0" name="X">F_Player.X</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="2468068838250123" type="PointerD">
+                                    <param id="0" name="X">CBoxD.X</param>
+                                    <param id="1" name="Y">PointerD.Height/2</param>
+                                </action>
+                                <action behavior="8Direction" id="10" name="Set vector Y" sid="5528409524184818" type="CBoxD">
+                                    <param id="0" name="Vector Y">F_DEFAULTSPEED</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Util that needs to perform every tick</comment>
+        <event-block sid="8729419767432362">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="9398407427319894" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="9287982767592908" type="System">
+                    <param id="0" name="Variable">F_numEnemies</param>
+                    <param id="1" name="Value">theDumbOne.Count+theFastOne.Count+theOddOne.Count+theSmartOne.Count +theBigOne.Count</param>
+                </action>
+                <action id="-9" name="Set value" sid="3219096080134199" type="System">
+                    <param id="0" name="Variable">F_Score</param>
+                    <param id="1" name="Value">floor(F_GameTime*6.55*F_defaultspeed/250)</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="2875806936250224">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="8199016177732241" type="System">
+                            <param id="0" name="Variable">F_isEnd</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="567240460602831" type="F_Distance">
+                            <param id="0" name="Text">&quot;&quot; &amp; F_Score</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="3064619382984329">
+                    <conditions>
+                        <condition id="-9" name="Is visible" sid="5641696421055197" type="F_DebugText" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="2666173419389962" type="F_DebugText">
+                            <param id="0" name="Text">&quot;Debug mode&quot; &amp; newline &amp; &quot;fps: &quot; &amp; fps &amp;&quot;  Time: &quot;&amp; floor(F_gametime)  &amp; &quot; Score:&quot; &amp; F_Score &amp; newline</param>
+                        </action>
+                        <action id="1" name="Append text" sid="1092121786370008" type="F_DebugText">
+                            <param id="0" name="Text">&quot;Speed:&quot; &amp; F_defaultspeed &amp; newline</param>
+                        </action>
+                        <action id="1" name="Append text" sid="7558192890508754" type="F_DebugText">
+                            <param id="0" name="Text">&quot;Wave &quot; &amp; F_wave  &amp; &quot;:&quot; &amp; F_spawnStage &amp; newline</param>
+                        </action>
+                        <action id="1" name="Append text" sid="2762793776214288" type="F_DebugText">
+                            <param id="0" name="Text">&quot;theDumbOne &quot; &amp; theDumbOne.Count &amp; &quot;/&quot; &amp; F_numDumbLimit &amp; newline</param>
+                        </action>
+                        <action id="1" name="Append text" sid="4601521171362426" type="F_DebugText">
+                            <param id="0" name="Text">&quot;theFastOne   &quot; &amp; theFastOne.Count &amp; &quot;/&quot; &amp; F_numFastLimit &amp; newline</param>
+                        </action>
+                        <action id="1" name="Append text" sid="6246113463886369" type="F_DebugText">
+                            <param id="0" name="Text">&quot;theOddOne   &quot; &amp; theOddOne.Count &amp; &quot;/&quot; &amp; F_numOddLimit &amp; newline</param>
+                        </action>
+                        <action id="1" name="Append text" sid="1227864320686115" type="F_DebugText">
+                            <param id="0" name="Text">&quot;theSmartOne &quot; &amp; theSmartOne.Count &amp; &quot;/&quot; &amp; F_numSmartLimit &amp; newline</param>
+                        </action>
+                        <action id="1" name="Append text" sid="9875579378587152" type="F_DebugText">
+                            <param id="0" name="Text">&quot;theBigOne     &quot; &amp; theBigOne.Count &amp; &quot;/&quot; &amp; F_numBigLimit &amp; newline</param>
+                        </action>
+                        <action id="1" name="Append text" sid="3756351203371012" type="F_DebugText">
+                            <param id="0" name="Text">&quot;Charge:  &quot; &amp; ceil(F_chargeCurrentCD) &amp; &quot;/&quot; &amp; F_chargeCD &amp;&quot;:&quot; &amp; F_numEnemyPassed%15 &amp; newline</param>
+                        </action>
+                        <action id="1" name="Append text" sid="772952894368794" type="F_DebugText">
+                            <param id="0" name="Text">&quot;Bonus charge time:  &quot; &amp; (F_gametime - F_Player.timeLastCharged)*0.005</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2030956538684561">
+                    <conditions>
+                        <condition id="-9" name="Is visible" sid="5008509708577837" type="F_DebugText" />
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="8129692835811083" type="CBoxB">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="3473606142202691" type="CBoxD">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="9249746857516966" type="CBoxF">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="5425500517343925" type="CBoxO">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="4036023130607229" type="CBoxS">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="2005743419100859" type="PointerB">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="9310052856002853" type="PointerD">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="2789929419243604" type="PointerF">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="9233413063302345" type="PointerO">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="9434012704798427" type="PointerS">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5086565076481502">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="9491970947946288" type="System">
+                            <param id="0" name="First value">F_timescale</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="50152077650622" type="System">
+                            <param id="0" name="Variable">F_gametime</param>
+                            <param id="1" name="Value">F_GameTime + dt</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="6456643624214939">
+                            <conditions>
+                                <condition id="-2" name="Compare Y" sid="2340440720782268" type="F_Background1">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Y co-ordinate">SCREENHEIGHT*1.5</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-2" name="Set Y" sid="2182960291188568" type="F_Background1">
+                                    <param id="0" name="Y">F_Background2.Y-SCREENHEIGHT</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9563425434691986">
+                            <conditions>
+                                <condition id="-2" name="Compare Y" sid="5800001117556711" type="F_Background2">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Y co-ordinate">SCREENHEIGHT*1.5</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-2" name="Set Y" sid="5836147193856585" type="F_Background2">
+                                    <param id="0" name="Y">F_Background1.Y-SCREENHEIGHT</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="646926797710533">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="1975248631419571" type="System">
+                            <param id="0" name="Variable">F_chargeCurrentCD</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Subtract from" sid="3997003019132939" type="System">
+                            <param id="0" name="Variable">F_chargeCurrentCD</param>
+                            <param id="1" name="Value">dt</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="9929397052993356" type="F_wind">
+                            <param id="0" name="X">F_Player.X</param>
+                            <param id="1" name="Y">F_Player.Y-30</param>
+                        </action>
+                        <action id="-5" name="Set width" sid="3443375017418238" type="F_charge">
+                            <param id="0" name="Width">(1-F_chargeCurrentCD/F_charge.fullCD)*F_chargeCD.Width</param>
+                        </action>
+                        <action id="-1" name="Set X" sid="2342787022532384" type="F_charge">
+                            <param id="0" name="X">F_chargeCD.X-(F_chargeCD.Width-F_charge.Width)/2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="8356997184097374">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="4650787057571254" type="System">
+                            <param id="0" name="Variable">F_chargeCurrentCD</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="8085135799079724" type="System">
+                            <param id="0" name="Variable">F_chargeCurrentCD</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9584891072207681">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="9500887651293407" type="System">
+                            <param id="0" name="Variable">F_chargeCurrentCD</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="4447086207279093" type="F_chargeD">
+                            <param id="0" name="Animation">&quot;done&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="2677541453199452">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="4428802812042806" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="7708530977761991">
+                    <conditions>
+                        <condition id="-24" name="For Each (ordered)" sid="8446626466390503" type="System">
+                            <param id="0" name="Object">Enemy</param>
+                            <param id="1" name="Expression">Enemy.Y</param>
+                            <param id="2" name="Order">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-24" name="Move to top" sid="7867053628757178" type="Enemy" />
+                        <action id="-24" name="Move to top" sid="8109379013321731" type="F_Player" />
+                    </actions>
+                </event-block>
+                <comment>set theSmartOne&apos;s motion base on player&apos;s position</comment>
+                <event-block sid="2377353270923192">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="7271247254711423" type="theSmartOne">
+                            <param id="0" name="Instance variable">canMove</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="9" name="Set vector X" sid="6080497331953117" type="CBoxS">
+                            <param id="0" name="Vector X">(-1/(F_wave+3-13)+1.05)*(F_Player.X-theSmartOne.X)+((F_Player.X-theSmartOne.X)/abs(F_Player.X-theSmartOne.X))*15</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>remove enemies when out of layout</comment>
+                <event-block sid="9053044418588171">
+                    <conditions>
+                        <condition id="-2" name="Compare Y" sid="8987325116901946" type="Enemy">
+                            <param id="0" name="Comparison">5</param>
+                            <param id="1" name="Y co-ordinate">SCREENHEIGHT+Enemy.Height/2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="2231375955658657" type="Enemy" />
+                        <action id="-10" name="Add to" sid="6746748873889089" type="System">
+                            <param id="0" name="Variable">F_numEnemyPassed</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="2138777400856253">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="5244355064887542" type="System">
+                                    <param id="0" name="First value">F_numEnemyPassed%20</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                                <condition id="-8" name="Compare two values" sid="6202376209141867" type="System">
+                                    <param id="0" name="First value">F_chargeCD</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Second value">F_DEFAULTCD</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="2353623580618428" type="System">
+                                    <param id="0" name="Variable">F_chargeCD</param>
+                                    <param id="1" name="Value">F_chargeCD-0.5</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>Fail conditions related checks</comment>
+        <event-block any="1" sid="6826391478449891">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="6990704830045675" type="CBoxP">
+                    <param id="0" name="Object">EnemyCB</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="6235127352890759">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="3502815791469284" type="F_Player">
+                            <param id="0" name="Instance variable">isCharging</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="4911935188650137">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="246696641993613" type="System">
+                                    <param id="0" name="First value">EnemyCB.X</param>
+                                    <param id="1" name="Comparison">5</param>
+                                    <param id="2" name="Second value">F_Player.X</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="1778175763277513" type="EnemyCB">
+                                    <param id="0" name="X">EnemyCB.X+F_Player.Width</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="9049723044883671">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="557556682329164" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="9625077297714501" type="EnemyCB">
+                                    <param id="0" name="X">EnemyCB.X-F_Player.Width</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="576618549210749">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="2226998775714617" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="701645193280604" type="Function">
+                            <param id="0" name="Name">&quot;F_gg&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="8629320783705249">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="3335849549413176" type="CBoxP">
+                    <param id="0" name="Object">CBoxB</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="6650848386583916" type="Function">
+                    <param id="0" name="Name">&quot;F_gg&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Restart the game after Restart button is pressed</comment>
+        <event-block any="1" sid="6684940630664687">
+            <conditions>
+                <condition id="3" name="On touched object" sid="1552942129164294" type="Touch">
+                    <param id="0" name="Object">F_restartB</param>
+                </condition>
+                <condition id="3" name="On touched object" sid="5860134808051274" type="Touch">
+                    <param id="0" name="Object">F_ppre</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-26" name="Restart layout" sid="420715976903432" type="System" />
+            </actions>
+        </event-block>
+        <event-block any="1" sid="4150175064604869">
+            <conditions>
+                <condition id="3" name="On touched object" sid="2665928223310186" type="Touch">
+                    <param id="0" name="Object">F_quitB</param>
+                </condition>
+                <condition id="3" name="On touched object" sid="2834238681028804" type="Touch">
+                    <param id="0" name="Object">F_ppmm</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-25" name="Go to layout (by name)" sid="714018984151064" type="System">
+                    <param id="0" name="Layout">&quot;Main&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9769827608565093">
+            <conditions>
+                <condition id="0" name="On function" sid="3063153451146866" type="Function">
+                    <param id="0" name="Name">&quot;F_gg&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="1329560946003611" type="F_Player" />
+                <action id="-9" name="Set value" sid="3783159065131056" type="System">
+                    <param id="0" name="Variable">F_isEnd</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="6826493923949094" type="System">
+                    <param id="0" name="Time scale">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="872250427360158" type="System">
+                    <param id="0" name="Variable">F_timescale</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-1" name="Set X" sid="5762847858603565" type="F_restart_bg">
+                    <param id="0" name="X">640</param>
+                </action>
+                <action id="0" name="Set text" sid="7263094858165295" type="F_finalscore">
+                    <param id="0" name="Text">F_Score</param>
+                </action>
+                <action id="0" name="Set text" sid="7077064938976199" type="F_Distance">
+                    <param id="0" name="Text">F_finalscore.Text</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="3249402962826119">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="2744305629369671" type="System">
+                            <param id="0" name="First value">F_EnemyTeam</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">&quot;Lehigh&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Post to URL" sid="6611421164010832" type="AJAX">
+                            <param id="0" name="Tag">&quot;incScoreBy&quot;</param>
+                            <param id="1" name="URL">&quot;http://104.131.125.9:8001/incScoreBy&quot;</param>
+                            <param id="2" name="Data">&quot;key=sAmiSdab3sT!&amp;lehigh=0&amp;laf=&quot;&amp;F_Score</param>
+                            <param id="3" name="Method">&quot;POST&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="4720172985142937">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="2650943173297694" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Post to URL" sid="3606338325066481" type="AJAX">
+                            <param id="0" name="Tag">&quot;incScoreBy&quot;</param>
+                            <param id="1" name="URL">&quot;http://104.131.125.9:8001/incScoreBy&quot;</param>
+                            <param id="2" name="Data">&quot;key=sAmiSdab3sT!&amp;lehigh=&quot;&amp;F_Score&amp;&quot;&amp;laf=0&quot;</param>
+                            <param id="3" name="Method">&quot;POST&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <comment>&quot;initializing&quot; variables when game is starting for restarting</comment>
+        <event-block sid="1700927677818637">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="914794187009369" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8793901300067535" type="System">
+                    <param id="0" name="Variable">F_timescale</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="958294094206353" type="System">
+                    <param id="0" name="Time scale">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="3655447179592288" type="System">
+                    <param id="0" name="Variable">F_isEnd</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="5196308160470588" type="System">
+                    <param id="0" name="Variable">F_wave</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="8053711347740157" type="System">
+                    <param id="0" name="Variable">F_spawnStage</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="5624877592623082" type="System">
+                    <param id="0" name="Variable">F_spawnCheck</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="1642652808488285" type="System">
+                    <param id="0" name="Variable">F_chargeCurrentCD</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="8430927098722199" type="System">
+                    <param id="0" name="Variable">F_chargeCD</param>
+                    <param id="1" name="Value">F_DEFAULTCD</param>
+                </action>
+                <action id="-9" name="Set value" sid="7738344103225178" type="System">
+                    <param id="0" name="Variable">F_gametime</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="3124814512450636" type="System">
+                    <param id="0" name="Variable">F_numEnemyPassed</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="6629489724785716" type="System">
+                    <param id="0" name="Variable">F_Score</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="9179912532911997" type="System">
+                    <param id="0" name="Variable">F_chargeCD</param>
+                    <param id="1" name="Value">F_DEFAULTCD</param>
+                </action>
+                <action id="-9" name="Set value" sid="4726646973606743" type="System">
+                    <param id="0" name="Variable">F_defaultspeed</param>
+                    <param id="1" name="Value">300</param>
+                </action>
+                <action id="-4" name="Set position to another object" sid="330459704409624" type="CBoxP">
+                    <param id="0" name="Object">F_Player</param>
+                    <param id="1" name="Image point (optional)">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="7967675465733531" type="PointerB" />
+                <action id="-9" name="Destroy" sid="2186646278490402" type="PointerD" />
+                <action id="-9" name="Destroy" sid="2650593211915577" type="PointerF" />
+                <action id="-9" name="Destroy" sid="2299378331417001" type="PointerO" />
+                <action id="-9" name="Destroy" sid="2374128891858041" type="PointerS" />
+                <action id="-9" name="Destroy" sid="2552463331682375" type="F_wind" />
+                <action behavior="8Direction" id="10" name="Set vector Y" sid="2347239113582843" type="F_Background1">
+                    <param id="0" name="Vector Y">F_DEFAULTSPEED</param>
+                </action>
+                <action behavior="8Direction" id="10" name="Set vector Y" sid="7329769308673617" type="F_Background2">
+                    <param id="0" name="Vector Y">F_DEFAULTSPEED</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="8040827284033944" type="F_quit">
+                    <param id="0" name="Pin to">F_restart_bg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="7450226591656059" type="F_restart">
+                    <param id="0" name="Pin to">F_restart_bg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="5887666333062336" type="F_finalscore">
+                    <param id="0" name="Pin to">F_restart_bg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="2691769270411509" type="CBoxP">
+                    <param id="0" name="Pin to">F_Player</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="9203441152147247" type="F_quitB">
+                    <param id="0" name="Pin to">F_restart_bg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="3442999728344236" type="F_restartB">
+                    <param id="0" name="Pin to">F_restart_bg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="2234278739052981" type="F_ppmm">
+                    <param id="0" name="Pin to">F_ppbg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="371089597753991" type="F_ppre">
+                    <param id="0" name="Pin to">F_ppbg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="1734541877610051">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="2238608790612607" type="System">
+                            <param id="0" name="Variable">F_EnemyTeam</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Laf&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="1750209789519086" type="F_Player">
+                            <param id="0" name="Animation">&quot;Lehigh&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="8661078590709089" type="theDumbOne">
+                            <param id="0" name="Animation">F_EnemyTeam</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="763249082308658">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="7580808163887857" type="System">
+                            <param id="0" name="Variable">F_EnemyTeam</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Lehigh&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="8110766074164377" type="F_Player">
+                            <param id="0" name="Animation">&quot;Laf&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="4292008861832774" type="theDumbOne">
+                            <param id="0" name="Animation">F_EnemyTeam</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="747132787187661">
+            <conditions>
+                <condition id="0" name="On function" sid="6580206399406698" type="Function">
+                    <param id="0" name="Name">&quot;F_start&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set time scale" sid="3652717084350824" type="System">
+                    <param id="0" name="Time scale">1.0</param>
+                </action>
+                <action id="-9" name="Set value" sid="1134486135266476" type="System">
+                    <param id="0" name="Variable">F_timescale</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="2999545987229742" type="System">
+                    <param id="0" name="Variable">F_isEnd</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1821627927704561">
+            <conditions>
+                <condition id="3" name="On touched object" sid="2953052084338683" type="Touch">
+                    <param id="0" name="Object">F_guideB</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="6890574726199583" type="F_guide" />
+                <action id="-9" name="Destroy" sid="9716584934681487" type="F_guideB" />
+                <action id="0" name="Call function" sid="168496422610626" type="Function">
+                    <param id="0" name="Name">&quot;F_start&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

@@ -1,0 +1,1076 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>evtSoccer</name>
+    <events>
+        <variable constant="0" name="soccer_shot" sid="4039040407268558" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_onTarget" sid="4865517070723647" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_started" sid="1952649363114789" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_isEnd" sid="677015275646505" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_scoreN" sid="9806762413795597" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_timer" sid="1474319317599057" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_tan" sid="3591783616079159" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_angle" sid="9298541615686754" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_oldTime" sid="2188001242210908" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_wasTouching" sid="8607145798206484" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_flying" sid="8368317375861837" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_currentT" sid="1375319755491946" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_currentY" sid="7613471857478353" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_currentX" sid="5902073922766195" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_dtO" sid="4692186275550119" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_dtN" sid="7867369254848843" static="0" type="number">0</variable>
+        <variable comment="Scale for soccer_ball" constant="0" name="soccer_scale" sid="8631385143443298" static="0" type="number">0.6</variable>
+        <variable comment="0: no shrink, 1: shrinking" constant="0" name="soccer_shrinkOn" sid="248572109701433" static="0" type="number">0</variable>
+        <variable comment="0: right, 1: left" constant="0" name="soccer_goalieDirection" sid="4020956806583491" static="0" type="number">2</variable>
+        <variable constant="0" name="soccer_diffY" sid="3082840653649276" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_diffX" sid="953106172966712" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_ballOldY" sid="7353601916161805" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_ballOldX" sid="2843069846841188" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_ballNewY" sid="7724715692131295" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_ballNewX" sid="7761449343794627" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_test4Val" sid="773841955212764" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_test3Val" sid="126844279419356" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_test2Val" sid="9888596895581115" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_test1Val" sid="3577523352080914" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_waitInterval" sid="2812954113305079" static="0" type="number">4</variable>
+        <variable constant="0" name="soccer_score" sid="122707295736739" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_currentLevel" sid="7098254399742417" static="0" type="number">0</variable>
+        <variable constant="0" name="soccer_cornerLowerY" sid="2959569337622004" static="0" type="number">350</variable>
+        <variable constant="0" name="soccer_cornerLowerX" sid="9263339645309789" static="0" type="number">330</variable>
+        <variable constant="0" name="soccer_cornerUpperY" sid="2520175159892209" static="0" type="number">415</variable>
+        <variable constant="0" name="soccer_cornerUpperX" sid="5346002676870089" static="0" type="number">950</variable>
+        <variable constant="0" name="soccer_targetInterval" sid="7640221243462612" static="0" type="number">4</variable>
+        <event-block sid="7856084208268596">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="3343187972917431" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="5501374705937744" type="System">
+                    <param id="0" name="Variable">soccer_isEnd</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="6716055901625195" type="System">
+                    <param id="0" name="Variable">soccer_timer</param>
+                    <param id="1" name="Value">30</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="3133040497460557" type="System">
+                    <param id="0" name="Time scale">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="5900507660566539" type="System">
+                    <param id="0" name="Variable">soccer_waitInterval</param>
+                    <param id="1" name="Value">2.5</param>
+                </action>
+                <action id="-9" name="Set value" sid="4929318013661421" type="System">
+                    <param id="0" name="Variable">soccer_shot</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="3957723031384418" type="soccer_quit">
+                    <param id="0" name="Pin to">soccer_ggbg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="3705472627567534" type="soccer_restart">
+                    <param id="0" name="Pin to">soccer_ggbg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="8497401594718315" type="soccer_finalScore">
+                    <param id="0" name="Pin to">soccer_ggbg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="3562899894137372" type="soccer_ppmm">
+                    <param id="0" name="Pin to">soccer_ppbg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="2034641599362504" type="soccer_ppre">
+                    <param id="0" name="Pin to">soccer_ppbg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="6489028629793827" type="soccer_restartB">
+                    <param id="0" name="Pin to">soccer_ggbg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="8478440212115163" type="soccer_quitB">
+                    <param id="0" name="Pin to">soccer_ggbg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="2101016499738623" type="System">
+                    <param id="0" name="Variable">soccer_currentX</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="3770315369888477" type="System">
+                    <param id="0" name="Variable">soccer_currentY</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="7922134062329014" type="soccer_simpleTarget" />
+                <action id="-9" name="Destroy" sid="6498859380894068" type="soccer_ball" />
+            </actions>
+        </event-block>
+        <comment>Hide all targets</comment>
+        <comment>Generate Targets</comment>
+        <event-block sid="7850773130850051">
+            <conditions>
+                <condition id="0" name="On function" sid="8483775928244549" type="Function">
+                    <param id="0" name="Name">&quot;soccer_generateSimpleTargets&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="5420012215702247" type="System">
+                    <param id="0" name="Object to create">soccer_simpleTarget</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">random(soccer_cornerLowerX, soccer_cornerUpperX)</param>
+                    <param id="3" name="Y">random(soccer_cornerLowerY, soccer_cornerUpperY)</param>
+                </action>
+                <action id="-24" name="Move to top" sid="2340797646578113" type="soccer_goalie" />
+            </actions>
+        </event-block>
+        <event-block sid="3463909631526011">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="4903372139496306" type="soccer_ball">
+                    <param id="0" name="Object">soccer_simpleTarget</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="5816123161654435" type="System">
+                    <param id="0" name="Variable">soccer_scale</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">0.45</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="9848174474867363" type="System">
+                    <param id="0" name="Variable">soccer_shot</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="0" name="Call function" sid="262199671190488" type="Function">
+                    <param id="0" name="Name">&quot;soccer_reset&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="-10" name="Add to" sid="2344913900444428" type="System">
+                    <param id="0" name="Variable">soccer_scoreN</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Set text" sid="189836459206431" type="soccer_score">
+                    <param id="0" name="Text">soccer_scoreN</param>
+                </action>
+                <action behavior="Physics" id="27" name="Set enabled" sid="2560179092912718" type="soccer_ball">
+                    <param id="0" name="Mode">0</param>
+                </action>
+                <action id="4" name="Set animation" sid="9592097919255939" type="soccer_ball">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-16" name="Wait" sid="4842164466996092" type="System">
+                    <param id="0" name="Seconds">0.25</param>
+                </action>
+                <action id="-9" name="Destroy" sid="4385232676531713" type="soccer_ball" />
+                <action id="-9" name="Destroy" sid="5433216368025826" type="soccer_simpleTarget" />
+            </actions>
+        </event-block>
+        <event-block sid="5898540821688902">
+            <conditions>
+                <condition id="0" name="On any touch start" sid="5187782991272419" type="Touch" />
+                <condition id="4" name="Is touching object" sid="7876304723995598" type="Touch">
+                    <param id="0" name="Object">soccer_touchContainer</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="566124719650402" type="System">
+                    <param id="0" name="Variable">soccer_test1Val</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="1396312414380785" type="System">
+                    <param id="0" name="Variable">soccer_ballOldX</param>
+                    <param id="1" name="Value">Touch.X</param>
+                </action>
+                <action id="-9" name="Set value" sid="5151857320026628" type="System">
+                    <param id="0" name="Variable">soccer_ballOldY</param>
+                    <param id="1" name="Value">Touch.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2806166688541849">
+            <conditions>
+                <condition id="2" name="Is in touch" sid="4422650752942742" type="Touch" />
+                <condition id="4" name="Is touching object" sid="2318358968883593" type="Touch">
+                    <param id="0" name="Object">soccer_touchContainer</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="8640851149278627" type="System">
+                    <param id="0" name="Variable">soccer_wasTouching</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="7365763363291737" type="System">
+                    <param id="0" name="Variable">soccer_diffX</param>
+                    <param id="1" name="Value">(Touch.X - soccer_ballOldX)</param>
+                </action>
+                <action id="-9" name="Set value" sid="3458758373719022" type="System">
+                    <param id="0" name="Variable">soccer_diffY</param>
+                    <param id="1" name="Value">(Touch.Y-soccer_ballOldY)</param>
+                </action>
+                <action id="-9" name="Set value" sid="2787632282662694" type="System">
+                    <param id="0" name="Variable">soccer_angle</param>
+                    <param id="1" name="Value">atan(soccer_diffX/soccer_diffY)</param>
+                </action>
+                <action id="-9" name="Set value" sid="8364254229723774" type="System">
+                    <param id="0" name="Variable">soccer_tan</param>
+                    <param id="1" name="Value">soccer_diffY/soccer_diffX</param>
+                </action>
+                <action id="0" name="Set text" sid="3531602121557676" type="soccer_test3">
+                    <param id="0" name="Text">soccer_diffX</param>
+                </action>
+                <action id="0" name="Set text" sid="2708123072426038" type="soccer_test4">
+                    <param id="0" name="Text">soccer_diffY</param>
+                </action>
+                <action id="0" name="Set text" sid="6614182770576704" type="soccer_test5">
+                    <param id="0" name="Text">soccer_wasTouching</param>
+                </action>
+                <action id="0" name="Set text" sid="6490818013728486" type="soccer_test2">
+                    <param id="0" name="Text">soccer_angle</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9561241465523747">
+            <conditions>
+                <condition id="1" name="On any touch end" sid="2408313347660582" type="Touch" />
+                <condition id="-14" name="Compare variable" sid="3562803755944753" type="System">
+                    <param id="0" name="Variable">soccer_wasTouching</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-21" name="Is between values" sid="4475310987046986" type="System">
+                    <param id="0" name="Value">soccer_angle</param>
+                    <param id="1" name="Lower bound">-65</param>
+                    <param id="2" name="Upper bound">65</param>
+                </condition>
+                <condition id="4" name="Is touching object" sid="8205455357576335" type="Touch">
+                    <param id="0" name="Object">soccer_touchContainer</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="7705033048378078" type="System">
+                    <param id="0" name="Variable">soccer_flying</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="7376341126105038" type="System">
+                    <param id="0" name="Variable">soccer_shot</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="3961635970981598" type="System">
+                    <param id="0" name="Variable">soccer_shot</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="4" name="Set animation" sid="409173688864073" type="soccer_ball">
+                    <param id="0" name="Animation">&quot;Spinning&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action behavior="Physics" id="27" name="Set enabled" sid="2871557412870587" type="soccer_ball">
+                    <param id="0" name="Mode">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="6869421007192636" type="soccer_ball">
+                    <param id="0" name="Instance variable">releaseX</param>
+                    <param id="1" name="Value">Touch.X</param>
+                </action>
+                <action id="-10" name="Set value" sid="6513784109475277" type="soccer_ball">
+                    <param id="0" name="Instance variable">releaseY</param>
+                    <param id="1" name="Value">Touch.Y</param>
+                </action>
+                <action id="-10" name="Set value" sid="9569617771085476" type="soccer_ball">
+                    <param id="0" name="Instance variable">endPointX</param>
+                    <param id="1" name="Value">(soccer_ball.endPointY - (soccer_ball.releaseY - soccer_tan*soccer_ball.releaseX))/soccer_tan</param>
+                </action>
+                <action id="-10" name="Set value" sid="7720151333300873" type="soccer_ball">
+                    <param id="0" name="Instance variable">endPointY</param>
+                    <param id="1" name="Value">soccer_ball.endPointY  - 50+ 5*soccer_wasTouching</param>
+                </action>
+                <action id="0" name="Set text" sid="5553382450143822" type="soccer_test6">
+                    <param id="0" name="Text">soccer_ball.endPointX</param>
+                </action>
+                <action id="0" name="Call function" sid="1140628391318586" type="Function">
+                    <param id="0" name="Name">&quot;soccer_setControlPoint&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Call function" sid="6645412439182627" type="Function">
+                    <param id="0" name="Name">&quot;soccer_toggleFlying&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Call function" sid="9593522962646589" type="Function">
+                    <param id="0" name="Name">&quot;soccer_jumpTo&quot;</param>
+                    <param id="1" name="Parameter {n}">soccer_ball.endPointX</param>
+                </action>
+                <action id="-9" name="Set value" sid="5265881512723947" type="System">
+                    <param id="0" name="Variable">soccer_oldTime</param>
+                    <param id="1" name="Value">time</param>
+                </action>
+                <action id="-9" name="Set value" sid="6805274311122872" type="System">
+                    <param id="0" name="Variable">soccer_wasTouching</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8644915807045018">
+            <conditions>
+                <condition id="0" name="On function" sid="7774147178097219" type="Function">
+                    <param id="0" name="Name">&quot;soccer_generateBall&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="770406930211523" type="System">
+                    <param id="0" name="Object to create">soccer_ball</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">632</param>
+                    <param id="3" name="Y">707</param>
+                </action>
+                <action id="-24" name="Move to top" sid="9273819410114898" type="soccer_ball" />
+            </actions>
+        </event-block>
+        <event-block sid="8137887155965353">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="9997099923719975" type="System">
+                    <param id="0" name="Variable">soccer_goalieDirection</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="9" name="Set vector X" sid="9366627174267293" type="soccer_goalie">
+                    <param id="0" name="Vector X">100</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8864615439398137">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="1809412160982596" type="System">
+                    <param id="0" name="Variable">soccer_goalieDirection</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="9" name="Set vector X" sid="8721002258941752" type="soccer_goalie">
+                    <param id="0" name="Vector X">10</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5851044343182639">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="4684456125989017" type="System">
+                    <param id="0" name="Variable">soccer_goalieDirection</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="8Direction" id="9" name="Set vector X" sid="2761868587137941" type="soccer_goalie">
+                    <param id="0" name="Vector X">-100</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2186402263062393">
+            <conditions>
+                <condition id="-1" name="Compare X" sid="3870282769737295" type="soccer_goalie">
+                    <param id="0" name="Comparison">4</param>
+                    <param id="1" name="X co-ordinate">soccer_cornerUpperX</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8211962702185021" type="System">
+                    <param id="0" name="Variable">soccer_goalieDirection</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="4" name="Set animation" sid="7246165718822825" type="soccer_goalie">
+                    <param id="0" name="Animation">&quot;MoveL&quot;</param>
+                    <param id="1" name="From">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8978928684090013">
+            <conditions>
+                <condition id="-1" name="Compare X" sid="3356843571382264" type="soccer_goalie">
+                    <param id="0" name="Comparison">2</param>
+                    <param id="1" name="X co-ordinate">soccer_cornerLowerX</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="7920422669928681" type="System">
+                    <param id="0" name="Variable">soccer_goalieDirection</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="4" name="Set animation" sid="7110215834795528" type="soccer_goalie">
+                    <param id="0" name="Animation">&quot;MoveL&quot;</param>
+                    <param id="1" name="From">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6778927655955687">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="2736397490010057" type="System">
+                    <param id="0" name="Variable">soccer_shrinkOn</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+                <condition id="-6" name="Every X seconds" sid="8727657928047332" type="System">
+                    <param id="0" name="Interval (seconds)">0.05</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="9346176846020902" type="System">
+                    <param id="0" name="Variable">soccer_scale</param>
+                    <param id="1" name="Value">0.013</param>
+                </action>
+                <action id="9" name="Set scale" sid="5957339814106656" type="soccer_ball">
+                    <param id="0" name="Scale">soccer_scale</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="420978384487632">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="1264347602639165" type="System">
+                    <param id="0" name="Variable">soccer_scale</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0.4</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="6164542115794359" type="System">
+                    <param id="0" name="Variable">soccer_shrinkOn</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3043193957223335">
+            <conditions>
+                <condition id="0" name="On function" sid="9983542015423289" type="Function">
+                    <param id="0" name="Name">&quot;soccer_bezier&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="1" name="Set return value" sid="5874990326768106" type="Function">
+                    <param id="0" name="Value">(Function.Param(0)*(1-Function.Param(3))^2 + Function.Param(1)*2*(1-Function.Param(3))*Function.Param(3) + Function.Param(2)*Function.Param(3)^2)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2066709681625856">
+            <conditions>
+                <condition id="0" name="On function" sid="1595837432970014" type="Function">
+                    <param id="0" name="Name">&quot;soccer_t&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="1" name="Set return value" sid="8477061149301772" type="Function">
+                    <param id="0" name="Value">(Function.Param(0) * Function.Param(1)) /((abs(Function.Param(2) - Function.Param(3)) * 2) * pi * (90/360))</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5216771439390128">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="6174647144449349" type="System" />
+                <condition id="-14" name="Compare variable" sid="3948351435205941" type="System">
+                    <param id="0" name="Variable">soccer_flying</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="7652104432236067" type="System">
+                    <param id="0" name="Variable">soccer_shrinkOn</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="7840706620356226" type="System">
+                    <param id="0" name="Variable">soccer_currentT</param>
+                    <param id="1" name="Value">(time-soccer_oldTime)/1</param>
+                </action>
+                <action id="-9" name="Set value" sid="8024462787450001" type="System">
+                    <param id="0" name="Variable">soccer_currentX</param>
+                    <param id="1" name="Value">Function.Call(&quot;soccer_bezier&quot;, 632, soccer_ball.controlPointX, soccer_ball.endPointX, soccer_currentT)</param>
+                </action>
+                <action id="-9" name="Set value" sid="2574040452963331" type="System">
+                    <param id="0" name="Variable">soccer_currentY</param>
+                    <param id="1" name="Value">Function.Call(&quot;soccer_bezier&quot;, 707, soccer_ball.controlPointY, soccer_ball.endPointY, soccer_currentT)</param>
+                </action>
+                <action id="0" name="Set text" sid="7784811027201549" type="soccer_test6">
+                    <param id="0" name="Text">soccer_ball.Y</param>
+                </action>
+                <action id="-1" name="Set X" sid="3676431822001303" type="soccer_ball">
+                    <param id="0" name="X">soccer_currentX</param>
+                </action>
+                <action id="-2" name="Set Y" sid="4130525063331991" type="soccer_ball">
+                    <param id="0" name="Y">soccer_currentY</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6028885796985913">
+            <conditions>
+                <condition id="0" name="On function" sid="9815089114518479" type="Function">
+                    <param id="0" name="Name">&quot;soccer_toggleFlying&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="4211571836317624">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="7642956760523645" type="System">
+                            <param id="0" name="Variable">soccer_flying</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="8221000732656695" type="System">
+                            <param id="0" name="Variable">soccer_flying</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9992751448622211">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="8902783032835362" type="System">
+                            <param id="0" name="Variable">soccer_flying</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="145845553686032" type="System">
+                            <param id="0" name="Variable">soccer_flying</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="7019120368048936">
+            <conditions>
+                <condition id="0" name="On function" sid="9166365961184541" type="Function">
+                    <param id="0" name="Name">&quot;soccer_setControlPoint&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="644207868617019">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="1521261798779337" type="System">
+                            <param id="0" name="First value">soccer_ball.endPointX</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Second value">632</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="5924045360127323" type="soccer_ball">
+                            <param id="0" name="Instance variable">controlPointX</param>
+                            <param id="1" name="Value">soccer_ball.endPointX - 100</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7534971529176296">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="2396597616788051" type="System">
+                            <param id="0" name="First value">soccer_ball.endPointX</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">632</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="1078445490179715" type="soccer_ball">
+                            <param id="0" name="Instance variable">controlPointX</param>
+                            <param id="1" name="Value">soccer_ball.endPointX + 100</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="8273062694909066">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="9075739559523081" type="System">
+                    <param id="0" name="Interval (seconds)">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="5539136117974897" type="System">
+                    <param id="0" name="Variable">soccer_timer</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Set text" sid="1394526051065186" type="soccer_timer">
+                    <param id="0" name="Text">soccer_timer</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2524757618388624">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="7576547743205034" type="System">
+                    <param id="0" name="Interval (seconds)">soccer_waitInterval</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="3999867532630663" type="System">
+                    <param id="0" name="Variable">soccer_started</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="4308208119915627" type="Function">
+                    <param id="0" name="Name">&quot;soccer_wipeAll&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Call function" sid="6132794894825255" type="Function">
+                    <param id="0" name="Name">&quot;soccer_reset&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="4" name="Set animation" sid="169448808293416" type="soccer_goalie">
+                    <param id="0" name="Animation">&quot;MoveL&quot;</param>
+                    <param id="1" name="From">0</param>
+                </action>
+                <action id="0" name="Call function" sid="2117453069611276" type="Function">
+                    <param id="0" name="Name">&quot;soccer_generateSimpleTargets&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Call function" sid="5167567271561208" type="Function">
+                    <param id="0" name="Name">&quot;soccer_generateBall&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5269133420342451">
+            <conditions>
+                <condition id="0" name="On function" sid="1521726907862071" type="Function">
+                    <param id="0" name="Name">&quot;soccer_reset&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="7144498202872877" type="System">
+                    <param id="0" name="Variable">soccer_flying</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="1924186056527244" type="System">
+                    <param id="0" name="Variable">soccer_scale</param>
+                    <param id="1" name="Value">0.6</param>
+                </action>
+                <action id="-9" name="Set value" sid="1334018820728621" type="System">
+                    <param id="0" name="Variable">soccer_shrinkOn</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4820234989094415">
+            <conditions>
+                <condition id="0" name="On function" sid="6246969400492753" type="Function">
+                    <param id="0" name="Name">&quot;soccer_wipeAll&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="4065377141093612">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="1080427597206386" type="System">
+                            <param id="0" name="Object">soccer_simpleTarget</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="6598531585703329" type="soccer_simpleTarget" />
+                    </actions>
+                </event-block>
+                <event-block sid="3515051136508776">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="5742862291289745" type="System">
+                            <param id="0" name="Object">soccer_ball</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="8612926332007242" type="soccer_ball" />
+                        <action id="-9" name="Set value" sid="2028009102924579" type="System">
+                            <param id="0" name="Variable">soccer_shot</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="7132792978296115">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="7962402042473028" type="System">
+                    <param id="0" name="Variable">soccer_timer</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="6933029666845654" type="Function">
+                    <param id="0" name="Name">&quot;soccer_gg&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5080763812665204">
+            <conditions>
+                <condition id="0" name="On function" sid="6358641858240017" type="Function">
+                    <param id="0" name="Name">&quot;soccer_gg&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="1886058431030792" type="System">
+                    <param id="0" name="Variable">soccer_isEnd</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="5091418649672215" type="System">
+                    <param id="0" name="Time scale">0</param>
+                </action>
+                <action id="-1" name="Set X" sid="5081426794668661" type="soccer_ggbg">
+                    <param id="0" name="X">640</param>
+                </action>
+                <action id="0" name="Set text" sid="5055278532081158" type="soccer_finalScore">
+                    <param id="0" name="Text">soccer_scoreN</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1384801119064235">
+            <conditions>
+                <condition id="0" name="On any touch start" sid="2656999387559622" type="Touch" />
+                <condition id="4" inverted="1" name="Is touching object" sid="8526715527114974" type="Touch">
+                    <param id="0" name="Object">soccer_ppre</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" sid="3563880838254682" type="Touch">
+                    <param id="0" name="Object">soccer_ppmm</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="9184469884225807" type="soccer_pause">
+                    <param id="0" name="Instance variable">isPaused</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="3912968626530399" type="System">
+                    <param id="0" name="Variable">soccer_isEnd</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set time scale" sid="1104638007093684" type="System">
+                    <param id="0" name="Time scale">1.0</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="8121856007439845" type="soccer_pause">
+                    <param id="0" name="Instance variable">isPaused</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="4" name="Set animation" sid="5442175079949921" type="soccer_pause">
+                    <param id="0" name="Animation">&quot;Pause&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-3" name="Set position" sid="7964575355823031" type="soccer_ppbg">
+                    <param id="0" name="X">1600</param>
+                    <param id="1" name="Y">800</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7332948151122213">
+            <conditions>
+                <condition id="0" name="On function" sid="7282092020057541" type="Function">
+                    <param id="0" name="Name">&quot;soccer_togglePause&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set time scale" sid="3108836396554541" type="System">
+                    <param id="0" name="Time scale">1-timescale</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="9483835373627737">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="9727696590417791" type="soccer_pause">
+                            <param id="0" name="Instance variable">isPaused</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="6212549858841061" type="soccer_pause">
+                            <param id="0" name="Animation">&quot;Pause&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="8081939285390852" type="soccer_pause">
+                            <param id="0" name="Instance variable">isPaused</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="4342922881569595" type="soccer_ppbg">
+                            <param id="0" name="X">1600</param>
+                            <param id="1" name="Y">800</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2574503714580165">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="7709291568128386" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="2573346933184828" type="soccer_pause">
+                            <param id="0" name="Animation">&quot;Play&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="7180963795098415" type="soccer_pause">
+                            <param id="0" name="Instance variable">isPaused</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="6394892341962142" type="soccer_ppbg">
+                            <param id="0" name="X">640</param>
+                            <param id="1" name="Y">400</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" sid="7983152230468154">
+            <conditions>
+                <condition id="3" name="On touched object" sid="9523502144774125" type="Touch">
+                    <param id="0" name="Object">soccer_pause</param>
+                </condition>
+                <condition id="0" name="On key pressed" sid="4468864693453426" type="Keyboard">
+                    <param id="0" name="Key">80 (P)</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="9870384667999093">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="8761134966671" type="System">
+                            <param id="0" name="Variable">soccer_isEnd</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="297027747763715" type="Function">
+                            <param id="0" name="Name">&quot;soccer_togglePause&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="3333291229564877">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="2010343756942827" type="System">
+                    <param id="0" name="Variable">soccer_scale</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">0.4</param>
+                </condition>
+                <condition id="-2" name="Compare Y" sid="7942097901168199" type="soccer_ball">
+                    <param id="0" name="Comparison">4</param>
+                    <param id="1" name="Y co-ordinate">410</param>
+                </condition>
+                <condition id="-2" name="Compare Y" sid="553550590083018" type="soccer_ball">
+                    <param id="0" name="Comparison">2</param>
+                    <param id="1" name="Y co-ordinate">425</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8399112210771784" type="System">
+                    <param id="0" name="Variable">soccer_flying</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="4" name="Set animation" sid="2321694806068109" type="soccer_ball">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action behavior="Physics" id="12" name="Set world gravity" sid="1150395163807965" type="soccer_ball">
+                    <param id="0" name="Gravity">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2084535679896046">
+            <conditions>
+                <condition id="3" name="On touched object" sid="5778446681288571" type="Touch">
+                    <param id="0" name="Object">soccer_restart</param>
+                </condition>
+            </conditions>
+            <actions />
+        </event-block>
+        <event-block sid="6073850259562143">
+            <conditions>
+                <condition id="0" name="On function" sid="9039967904399902" type="Function">
+                    <param id="0" name="Name">&quot;soccer_generateBonus&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="2122316226658954" type="System">
+                    <param id="0" name="Object to create">soccer_bonusTarget</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">random(soccer_cornerLowerX, soccer_cornerUpperX)</param>
+                    <param id="3" name="Y">random(soccer_cornerLowerY, soccer_cornerUpperY)</param>
+                </action>
+                <action id="-24" name="Move to top" sid="8129335823979667" type="soccer_goalie" />
+                <action id="-24" name="Move to top" sid="8958036578936282" type="soccer_ball" />
+                <action id="-16" name="Wait" sid="6493351300740579" type="System">
+                    <param id="0" name="Seconds">5</param>
+                </action>
+                <action id="-9" name="Destroy" sid="1260129384078166" type="soccer_bonusTarget" />
+            </actions>
+        </event-block>
+        <event-block sid="3904215621546252">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="1946876318338659" type="System">
+                    <param id="0" name="Interval (seconds)">random(12,18)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="213858907297491" type="Function">
+                    <param id="0" name="Name">&quot;soccer_generateBonus&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3036956563274376">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="2191475725166892" type="soccer_ball">
+                    <param id="0" name="Object">soccer_bonusTarget</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="4562474394667798" type="System">
+                    <param id="0" name="Variable">soccer_scale</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">0.45</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="5867137195847901" type="Function">
+                    <param id="0" name="Name">&quot;soccer_reset&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="-10" name="Add to" sid="7117372644787913" type="System">
+                    <param id="0" name="Variable">soccer_timer</param>
+                    <param id="1" name="Value">15</param>
+                </action>
+                <action id="0" name="Set text" sid="581378286247041" type="soccer_timer">
+                    <param id="0" name="Text">soccer_timer</param>
+                </action>
+                <action id="4" name="Set animation" sid="8403848067652188" type="soccer_ball">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-16" name="Wait" sid="1713621182714033" type="System">
+                    <param id="0" name="Seconds">0.25</param>
+                </action>
+                <action id="-9" name="Destroy" sid="9713983534199984" type="soccer_ball" />
+                <action id="-9" name="Destroy" sid="8620873304508036" type="soccer_bonusTarget" />
+            </actions>
+        </event-block>
+        <event-block sid="9219504461359063">
+            <conditions>
+                <condition id="0" name="On function" sid="6906501156638277" type="Function">
+                    <param id="0" name="Name">&quot;soccer_jumpTo&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <comment>Jump left</comment>
+                <event-block sid="6086910519280135">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="7467531247022251" type="System">
+                            <param id="0" name="First value">Function.Param(0)</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">soccer_goalie.X</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="9639406111574273" type="soccer_goalie">
+                            <param id="0" name="Animation">&quot;JumpingL&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="4985796311061597" type="System">
+                            <param id="0" name="Variable">soccer_goalieDirection</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Jump right</comment>
+                <event-block sid="4520258236662339">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="8218930691363177" type="System">
+                            <param id="0" name="First value">Function.Param(0)</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">soccer_goalie.X</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="1026334733272375" type="soccer_goalie">
+                            <param id="0" name="Animation">&quot;JumpingR&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="9973462188741468" type="System">
+                            <param id="0" name="Variable">soccer_goalieDirection</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" sid="3789859608028508">
+            <conditions>
+                <condition id="3" name="On touched object" sid="6125764737552153" type="Touch">
+                    <param id="0" name="Object">soccer_restartB</param>
+                </condition>
+                <condition id="3" name="On touched object" sid="4786259479643983" type="Touch">
+                    <param id="0" name="Object">soccer_ppre</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="1195026544736688" type="System">
+                    <param id="0" name="Variable">soccer_scoreN</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="6001145174076946" type="System">
+                    <param id="0" name="Time scale">1</param>
+                </action>
+                <action id="-26" name="Restart layout" sid="731758705958408" type="System" />
+            </actions>
+        </event-block>
+        <event-block any="1" sid="1049079603877796">
+            <conditions>
+                <condition id="3" name="On touched object" sid="8893524811273243" type="Touch">
+                    <param id="0" name="Object">soccer_quitB</param>
+                </condition>
+                <condition id="3" name="On touched object" sid="9849185363866951" type="Touch">
+                    <param id="0" name="Object">soccer_ppmm</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-25" name="Go to layout (by name)" sid="2283233919328218" type="System">
+                    <param id="0" name="Layout">&quot;Main&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3243409907183183">
+            <conditions>
+                <condition id="3" name="On touched object" sid="4646507287812882" type="Touch">
+                    <param id="0" name="Object">soccer_guideB</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set time scale" sid="766804384880223" type="System">
+                    <param id="0" name="Time scale">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="9520302349545948" type="soccer_guideB" />
+                <action id="-9" name="Destroy" sid="128234994222908" type="soccer_guide" />
+                <action id="-9" name="Set value" sid="2698556104416385" type="System">
+                    <param id="0" name="Variable">soccer_goalieDirection</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="0" name="Call function" sid="1226602520306403" type="Function">
+                    <param id="0" name="Name">&quot;soccer_init&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4534390354524536">
+            <conditions>
+                <condition id="0" name="On function" sid="1515878664962279" type="Function">
+                    <param id="0" name="Name">&quot;soccer_init&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="5306070382671668" type="System">
+                    <param id="0" name="Variable">soccer_started</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Call function" sid="5865552635108043" type="Function">
+                    <param id="0" name="Name">&quot;soccer_generateBall&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Call function" sid="4822205851158268" type="Function">
+                    <param id="0" name="Name">&quot;soccer_generateSimpleTargets&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2uistate>
+    <!--This is a UI state file - its content describes the user interface settings when the project was last open.
+It is entirely optional and the project will load without it.  If you are placing the project under source control,
+you probably do not want to add any .uistate.xml files to the repository.-->
+    <configurations>
+        <active>
+            <configuration name="HTML5" />
+        </active>
+        <display name="HTML5" />
+    </configurations>
+    <open-tabs>
+        <layout>Main</layout>
+        <layout>Basketball</layout>
+        <layout>Soccer</layout>
+        <layout>Football</layout>
+        <layout>Swimming</layout>
+        <event-sheet>evtMain</event-sheet>
+        <event-sheet>evtFootball</event-sheet>
+        <event-sheet>evtSoccer</event-sheet>
+        <event-sheet active="1">evtBasketball</event-sheet>
+        <event-sheet>evtSwimming</event-sheet>
+    </open-tabs>
+    <properties>
+        <property expanded="1" name="About" />
+        <property expanded="1" name="Project settings" />
+        <property expanded="0" name="Window Size" />
+        <property expanded="1" name="Configuration Settings" />
+    </properties>
+    <families-expanded root="1">
+        <family expanded="0" name="EnemyCB" />
+        <family expanded="0" name="Enemy" />
+        <family expanded="0" name="sw_entity" />
+        <family expanded="0" name="bak_fam_blocker" />
+        <family expanded="0" name="bak_fam_ball" />
+        <family expanded="0" name="main_button" />
+    </families-expanded>
+    <folders-expanded>
+        <folder expanded="1" path="object-folder/" />
+        <folder expanded="1" path="layout-folder/" />
+        <folder expanded="1" path="event-folder/" />
+        <folder expanded="0" path="file-folder/" />
+        <folder expanded="0" path="file-folder/Icons/" />
+        <folder expanded="1" path="animation-folder/F_Anchor/" />
+        <folder expanded="1" path="animation-folder/theFastOne/" />
+        <folder expanded="1" path="animation-folder/F_Background1/" />
+        <folder expanded="1" path="animation-folder/theOddOne/" />
+        <folder expanded="1" path="animation-folder/theSmartOne/" />
+        <folder expanded="1" path="animation-folder/theBigOne/" />
+        <folder expanded="1" path="animation-folder/F_chargeCD/" />
+        <folder expanded="1" path="animation-folder/PointerD/" />
+        <folder expanded="1" path="animation-folder/F_Background2/" />
+        <folder expanded="1" path="animation-folder/F_Player/" />
+        <folder expanded="1" path="animation-folder/F_RightButton/" />
+        <folder expanded="1" path="animation-folder/F_LeftButton/" />
+        <folder expanded="1" path="animation-folder/theDumbOne/" />
+        <folder expanded="1" path="animation-folder/CBoxB/" />
+        <folder expanded="1" path="animation-folder/CBoxO/" />
+        <folder expanded="1" path="animation-folder/CBoxF/" />
+        <folder expanded="1" path="animation-folder/PointerS/" />
+        <folder expanded="1" path="animation-folder/F_restart/" />
+        <folder expanded="1" path="animation-folder/F_chargeD/" />
+        <folder expanded="1" path="animation-folder/PointerF/" />
+        <folder expanded="1" path="animation-folder/PointerO/" />
+        <folder expanded="1" path="animation-folder/CBoxS/" />
+        <folder expanded="1" path="animation-folder/CBoxD/" />
+        <folder expanded="1" path="animation-folder/PointerB/" />
+        <folder expanded="1" path="animation-folder/CBoxP/" />
+        <folder expanded="1" path="animation-folder/F_Pause/" />
+        <folder expanded="1" path="animation-folder/F_wind/" />
+        <folder expanded="1" path="animation-folder/F_restart_bg/" />
+        <folder expanded="1" path="animation-folder/F_quit/" />
+        <folder expanded="1" path="animation-folder/F_quitB/" />
+        <folder expanded="1" path="animation-folder/F_PauseB/" />
+        <folder expanded="1" path="animation-folder/F_scoreFrame/" />
+        <folder expanded="1" path="animation-folder/F_restartB/" />
+        <folder expanded="1" path="animation-folder/F_charge/" />
+        <folder expanded="1" path="animation-folder/main_Locker/" />
+        <folder expanded="1" path="animation-folder/sw_background/" />
+        <folder expanded="1" path="animation-folder/sw_scoreboard/" />
+        <folder expanded="1" path="animation-folder/sw_player/" />
+        <folder expanded="1" path="animation-folder/sw_lane1_1/" />
+        <folder expanded="1" path="animation-folder/sw_lane2_1/" />
+        <folder expanded="1" path="animation-folder/sw_lane1_2/" />
+        <folder expanded="1" path="animation-folder/sw_lane2_2/" />
+        <folder expanded="1" path="animation-folder/sw_points/" />
+        <folder expanded="1" path="animation-folder/sw_invis/" />
+        <folder expanded="1" path="animation-folder/sw_enemy/" />
+        <folder expanded="1" path="animation-folder/sw_extralife/" />
+        <folder expanded="1" path="animation-folder/sw_pause/" />
+        <folder expanded="1" path="animation-folder/sw_gameover_bg/" />
+        <folder expanded="1" path="animation-folder/sw_restart/" />
+        <folder expanded="1" path="animation-folder/sw_quit/" />
+        <folder expanded="1" path="animation-folder/sw_pauseB/" />
+        <folder expanded="1" path="animation-folder/sw_bg/" />
+        <folder expanded="1" path="animation-folder/sw_cboxP/" />
+        <folder expanded="1" path="animation-folder/sw_cboxE/" />
+        <folder expanded="1" path="animation-folder/sw_restartB/" />
+        <folder expanded="1" path="animation-folder/sw_quitB/" />
+        <folder expanded="1" path="animation-folder/main_LehighB/" />
+        <folder expanded="1" path="animation-folder/main_LafB/" />
+        <folder expanded="1" path="animation-folder/main_menuB/" />
+        <folder expanded="1" path="animation-folder/F_guide/" />
+        <folder expanded="1" path="animation-folder/F_guideB/" />
+        <folder expanded="1" path="animation-folder/sw_guide/" />
+        <folder expanded="1" path="animation-folder/sw_guideB/" />
+        <folder expanded="1" path="animation-folder/bak_blocker/" />
+        <folder expanded="1" path="animation-folder/bak_basketBlock/" />
+        <folder expanded="1" path="animation-folder/bak_backBoard/" />
+        <folder expanded="1" path="animation-folder/bak_ballNormal/" />
+        <folder expanded="1" path="animation-folder/bak_background/" />
+        <folder expanded="1" path="animation-folder/bak_basketTop/" />
+        <folder expanded="1" path="animation-folder/bak_quit/" />
+        <folder expanded="1" path="animation-folder/bak_ballSuper/" />
+        <folder expanded="1" path="animation-folder/bak_pause/" />
+        <folder expanded="1" path="animation-folder/bak_ballLaf/" />
+        <folder expanded="1" path="animation-folder/bak_restart_bg/" />
+        <folder expanded="1" path="animation-folder/bak_restart/" />
+        <folder expanded="1" path="animation-folder/bak_ScoreBoard/" />
+        <folder expanded="1" path="animation-folder/bak_ballLeh/" />
+        <folder expanded="1" path="animation-folder/bak_basketNet/" />
+        <folder expanded="1" path="animation-folder/bak_basketBot/" />
+        <folder expanded="1" path="animation-folder/bak_basketNetScore/" />
+        <folder expanded="1" path="animation-folder/soccer_goalie/" />
+        <folder expanded="1" path="animation-folder/soccer_Background/" />
+        <folder expanded="1" path="animation-folder/soccer_ball/" />
+        <folder expanded="1" path="animation-folder/soccer_simpleTarget/" />
+        <folder expanded="1" path="animation-folder/soccer_xMark/" />
+        <folder expanded="1" path="animation-folder/soccer_touchContainer/" />
+        <folder expanded="1" path="animation-folder/soccer_pause/" />
+        <folder expanded="1" path="animation-folder/soccer_ggbg/" />
+        <folder expanded="1" path="animation-folder/soccer_quit/" />
+        <folder expanded="1" path="animation-folder/soccer_restart/" />
+        <folder expanded="1" path="animation-folder/soccer_bonusTarget/" />
+        <folder expanded="1" path="animation-folder/bak_pauseB/" />
+        <folder expanded="1" path="animation-folder/bak_guide/" />
+        <folder expanded="1" path="animation-folder/bak_guideB/" />
+        <folder expanded="1" path="animation-folder/main_scoreboard/" />
+        <folder expanded="1" path="animation-folder/main_fB/" />
+        <folder expanded="1" path="animation-folder/main_sB/" />
+        <folder expanded="1" path="animation-folder/main_bB/" />
+        <folder expanded="1" path="animation-folder/main_swB/" />
+        <folder expanded="1" path="animation-folder/main_Lehighver/" />
+        <folder expanded="1" path="animation-folder/main_Lafver/" />
+        <folder expanded="1" path="animation-folder/main_givchall/" />
+        <folder expanded="1" path="animation-folder/sw_ppbg/" />
+        <folder expanded="1" path="animation-folder/sw_ppre/" />
+        <folder expanded="1" path="animation-folder/sw_ppmm/" />
+        <folder expanded="1" path="animation-folder/bak_restartB/" />
+        <folder expanded="1" path="animation-folder/bak_quitB/" />
+        <folder expanded="1" path="animation-folder/bak_ppbg/" />
+        <folder expanded="1" path="animation-folder/bak_ppre/" />
+        <folder expanded="1" path="animation-folder/bak_ppmm/" />
+        <folder expanded="1" path="animation-folder/F_ppbg/" />
+        <folder expanded="1" path="animation-folder/F_ppre/" />
+        <folder expanded="1" path="animation-folder/F_ppmm/" />
+        <folder expanded="1" path="animation-folder/soccer_scoreBoard/" />
+        <folder expanded="1" path="animation-folder/Sprite/" />
+        <folder expanded="1" path="animation-folder/Sprite2/" />
+        <folder expanded="1" path="animation-folder/Sprite3/" />
+        <folder expanded="1" path="animation-folder/soccer_ppbg/" />
+        <folder expanded="1" path="animation-folder/soccer_ppre/" />
+        <folder expanded="1" path="animation-folder/soccer_ppmm/" />
+        <folder expanded="1" path="animation-folder/soccer_restartB/" />
+        <folder expanded="1" path="animation-folder/soccer_quitB/" />
+        <folder expanded="1" path="animation-folder/soccer_guide/" />
+        <folder expanded="1" path="animation-folder/soccer_guideB/" />
+        <folder expanded="1" path="animation-folder/bak_bg/" />
+        <folder expanded="1" path="animation-folder/soccer_pauseB/" />
+    </folders-expanded>
+</c2uistate>

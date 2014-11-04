@@ -1,0 +1,903 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>evtSwimming</name>
+    <events>
+        <variable constant="0" name="sw_isEnd" sid="129732265832172" static="0" type="number">0</variable>
+        <variable constant="0" name="sw_invincible" sid="9508774851421702" static="0" type="number">0</variable>
+        <variable constant="0" name="sw_enemy" sid="3515787259399873" static="0" type="text"></variable>
+        <variable constant="0" name="sw_spawn" sid="7280721895179968" static="0" type="number">0</variable>
+        <variable constant="0" name="sw_timescale" sid="4801724196161684" static="0" type="number">1</variable>
+        <variable constant="0" name="sw_deafultspeed" sid="6066546797790448" static="0" type="number">400</variable>
+        <variable constant="0" name="sw_score" sid="5771420231735255" static="0" type="number">-1</variable>
+        <variable constant="0" name="sw_invistimer" sid="8471441902601334" static="0" type="number">0</variable>
+        <variable constant="0" name="sw_lives" sid="1359891460867178" static="0" type="number">1</variable>
+        <variable constant="0" name="sw_gametime" sid="6281762609940513" static="0" type="number">0</variable>
+        <event-block sid="2163557472441839">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="9687891571039636" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="4664410011970484" type="System">
+                    <param id="0" name="Variable">sw_isEnd</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="8708444009165656" type="System">
+                    <param id="0" name="Variable">sw_invistimer</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="7433102422829001" type="System">
+                    <param id="0" name="Variable">sw_lives</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="1764804293177703" type="System">
+                    <param id="0" name="Variable">sw_gametime</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="3543750057377985" type="System">
+                    <param id="0" name="Variable">sw_timescale</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="2600514135168037" type="System">
+                    <param id="0" name="Variable">sw_invincible</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="7932997979880606" type="System">
+                    <param id="0" name="Variable">sw_score</param>
+                    <param id="1" name="Value">-1</param>
+                </action>
+                <action behavior="8Direction" id="9" name="Set vector X" sid="9199563957552574" type="sw_lane1_1">
+                    <param id="0" name="Vector X">-sw_deafultspeed</param>
+                </action>
+                <action behavior="8Direction" id="9" name="Set vector X" sid="2883466694437748" type="sw_lane1_2">
+                    <param id="0" name="Vector X">-sw_deafultspeed</param>
+                </action>
+                <action behavior="8Direction" id="9" name="Set vector X" sid="443492935857282" type="sw_lane2_1">
+                    <param id="0" name="Vector X">-sw_deafultspeed</param>
+                </action>
+                <action behavior="8Direction" id="9" name="Set vector X" sid="9890158350128716" type="sw_lane2_2">
+                    <param id="0" name="Vector X">-sw_deafultspeed</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="8733884256319286" type="sw_quit">
+                    <param id="0" name="Pin to">sw_gameover_bg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="5995312429543361" type="sw_restart">
+                    <param id="0" name="Pin to">sw_gameover_bg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="9400604431893844" type="sw_finalscore">
+                    <param id="0" name="Pin to">sw_gameover_bg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="1925261123271127" type="sw_player">
+                    <param id="0" name="Pin to">sw_cboxP</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="692052592454759" type="sw_restartB">
+                    <param id="0" name="Pin to">sw_gameover_bg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="3495346252498358" type="sw_quitB">
+                    <param id="0" name="Pin to">sw_gameover_bg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="1603937296185021" type="sw_bubbleP">
+                    <param id="0" name="Pin to">sw_player</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="4533555157830339" type="sw_ppmm">
+                    <param id="0" name="Pin to">sw_ppbg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="1242858648162276" type="sw_ppre">
+                    <param id="0" name="Pin to">sw_ppbg</param>
+                    <param id="1" name="Mode">1</param>
+                </action>
+                <action id="4" name="Set animation" sid="173842059816745" type="sw_scoreboard">
+                    <param id="0" name="Animation">&quot;L&quot; &amp; sw_lives</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="9108509745041651" type="System">
+                    <param id="0" name="Time scale">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="1403008742447893">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="9335529734332836" type="System">
+                            <param id="0" name="Variable">main_side</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="5149633848452085" type="sw_player">
+                            <param id="0" name="Animation">&quot;Lehigh&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="9510956727098424" type="System">
+                            <param id="0" name="Variable">sw_enemy</param>
+                            <param id="1" name="Value">&quot;Laf&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5738891905572263">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="2312126614235464" type="System">
+                            <param id="0" name="Variable">main_side</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set animation" sid="2584395307096191" type="sw_player">
+                            <param id="0" name="Animation">&quot;Laf&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="8064495020217435" type="System">
+                            <param id="0" name="Variable">sw_enemy</param>
+                            <param id="1" name="Value">&quot;Lehigh&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="9663947139341303">
+            <conditions>
+                <condition id="3" name="On touched object" sid="2724249755891941" type="Touch">
+                    <param id="0" name="Object">sw_guideB</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="192980558115758" type="sw_guideB" />
+                <action id="-9" name="Destroy" sid="8016761382483115" type="sw_guide" />
+                <action id="0" name="Call function" sid="7672959705616629" type="Function">
+                    <param id="0" name="Name">&quot;sw_start&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9931026898853867">
+            <conditions>
+                <condition id="0" name="On function" sid="1296383060710027" type="Function">
+                    <param id="0" name="Name">&quot;sw_start&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="660783805544382" type="System">
+                    <param id="0" name="Variable">sw_isEnd</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="4634989558381735" type="System">
+                    <param id="0" name="Variable">sw_timescale</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="507250725410452" type="System">
+                    <param id="0" name="Time scale">1.0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3502652278054651">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="5301302739864836" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="4420650449817802" type="sw_score">
+                    <param id="0" name="Text">sw_score</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="5362464016759916">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="7101024744552784" type="sw_lane1_1">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">-777</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="1462806116063428" type="sw_lane1_1">
+                            <param id="0" name="X">sw_lane1_2.X+sw_lane1_1.Width</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5447280302505153">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="4279055831872052" type="sw_lane1_2">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">-777</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="2869735275568499" type="sw_lane1_2">
+                            <param id="0" name="X">sw_lane1_1.X+sw_lane1_2.Width</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="446986572512726">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="5112288947608174" type="sw_lane2_1">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">-810</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="4904539016913465" type="sw_lane2_1">
+                            <param id="0" name="X">sw_lane2_2.X+sw_lane2_1.Width</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="4037231255675123">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="1432430243855184" type="sw_lane2_2">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">-810</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="9473214976133669" type="sw_lane2_2">
+                            <param id="0" name="X">sw_lane2_1.X+sw_lane2_2.Width</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="4511943600075781">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="7778512485631302" type="sw_entity">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">-sw_entity.Width/2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="331868471707777" type="sw_entity" />
+                    </actions>
+                </event-block>
+                <event-block sid="6091441296486315">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="9289443578257552" type="System">
+                            <param id="0" name="Variable">sw_invistimer</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Subtract from" sid="4342642288746448" type="System">
+                            <param id="0" name="Variable">sw_invistimer</param>
+                            <param id="1" name="Value">dt</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="4216706905789583">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="3503318138183378" type="System">
+                            <param id="0" name="Variable">sw_invistimer</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="9982360746315658" type="System">
+                            <param id="0" name="Variable">sw_invistimer</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1389896414199748">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="7080121503872932" type="System">
+                            <param id="0" name="Variable">sw_invistimer</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-16" name="Set opacity" sid="4337615748017134" type="sw_player">
+                            <param id="0" name="Opacity">100</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="2245353990849969">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="6385753128506867" type="System">
+                            <param id="0" name="Variable">sw_invincible</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-11" name="Subtract from" sid="9217048231962956" type="System">
+                            <param id="0" name="Variable">sw_invincible</param>
+                            <param id="1" name="Value">dt</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="9575557441467399">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="7698805716437659" type="System">
+                            <param id="0" name="Variable">sw_invincible</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="4189611019600374" type="System">
+                            <param id="0" name="Variable">sw_invincible</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="6699156734326256">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="2107395071863617" type="System">
+                            <param id="0" name="Variable">sw_timescale</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="7741506561579049" type="System">
+                            <param id="0" name="Variable">sw_gametime</param>
+                            <param id="1" name="Value">dt</param>
+                        </action>
+                        <action behavior="8Direction" id="10" name="Set vector Y" sid="4575754493565285" type="sw_cboxP">
+                            <param id="0" name="Vector Y">sw_cboxP.8Direction.VectorY+10</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block any="1" sid="1960351569480635">
+                            <conditions>
+                                <condition id="-2" name="Compare Y" sid="7523364880710931" type="sw_player">
+                                    <param id="0" name="Comparison">3</param>
+                                    <param id="1" name="Y co-ordinate">140</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="5709745442418507" type="sw_player">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Y co-ordinate">800-sw_cboxP.Height/2-1</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="6966001286194004">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="1020886169024673" type="System">
+                                            <param id="0" name="Variable">sw_invincible</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="6856045203900432">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="6655581354586664" type="System">
+                                                    <param id="0" name="Variable">sw_lives</param>
+                                                    <param id="1" name="Comparison">5</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="1672397216721822" type="System">
+                                                    <param id="0" name="Variable">sw_invincible</param>
+                                                    <param id="1" name="Value">2.5</param>
+                                                </action>
+                                                <action behavior="Flash" id="0" name="Flash" sid="5640675405707484" type="sw_player">
+                                                    <param id="0" name="&apos;On&apos; time">0.2</param>
+                                                    <param id="1" name="&apos;Off&apos; time">0.2</param>
+                                                    <param id="2" name="Duration">1.5</param>
+                                                </action>
+                                                <action id="-11" name="Subtract from" sid="5454981194975988" type="System">
+                                                    <param id="0" name="Variable">sw_lives</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="4" name="Set animation" sid="9049083221941909" type="sw_scoreboard">
+                                                    <param id="0" name="Animation">&quot;L&quot; &amp; sw_lives</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="1537311075655788">
+                                            <conditions>
+                                                <condition id="-14" name="Compare variable" sid="1766140182976138" type="System">
+                                                    <param id="0" name="Variable">sw_lives</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Call function" sid="2531780162535683" type="Function">
+                                                    <param id="0" name="Name">&quot;sw_gg&quot;</param>
+                                                    <param id="1" name="Parameter {n}"></param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="6804116226949842">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="7634364015271635" type="sw_enemy">
+                            <param id="0" name="Comparison">2</param>
+                            <param id="1" name="X co-ordinate">sw_player.X</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="1205834475665303">
+                            <conditions>
+                                <condition id="-4" name="Trigger once while true" sid="1609923256830971" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Add to" sid="4411202901636113" type="System">
+                                    <param id="0" name="Variable">sw_score</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="1560075172742266">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="519747341861955" type="sw_cboxP">
+                    <param id="0" name="Object">sw_cboxE</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="142929328943565" type="System">
+                    <param id="0" name="Variable">sw_invistimer</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="3372579487572348">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="1760925845158715" type="System">
+                            <param id="0" name="Variable">sw_lives</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                        <condition id="-4" name="Trigger once while true" sid="9443317202897999" type="System" />
+                    </conditions>
+                    <actions>
+                        <action behavior="Flash" id="0" name="Flash" sid="2441937971625313" type="sw_player">
+                            <param id="0" name="&apos;On&apos; time">0.2</param>
+                            <param id="1" name="&apos;Off&apos; time">0.2</param>
+                            <param id="2" name="Duration">1.5</param>
+                        </action>
+                        <action id="-11" name="Subtract from" sid="6983149307104311" type="System">
+                            <param id="0" name="Variable">sw_lives</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="2535529595551704" type="sw_scoreboard">
+                            <param id="0" name="Animation">&quot;L&quot; &amp; sw_lives</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7517214611101466">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="560386997791264" type="System">
+                            <param id="0" name="Variable">sw_lives</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="3662121904615241" type="Function">
+                            <param id="0" name="Name">&quot;sw_gg&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="9316803551808626">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="7263078119820736" type="System" />
+            </conditions>
+            <actions>
+                <action id="-24" name="Move to top" sid="8766350382587678" type="sw_player" />
+            </actions>
+            <sub-events>
+                <event-block sid="2974178035429356">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="7977895962255788" type="System">
+                            <param id="0" name="Interval (seconds)">100/(sw_gametime+50)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="2566516408266704" type="System">
+                            <param id="0" name="Object to create">sw_enemy</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">1280+sw_enemy.Width/2</param>
+                            <param id="3" name="Y">random(150, 700)</param>
+                        </action>
+                        <action id="-1" name="Set X" sid="9657000861603498" type="sw_bubbleE">
+                            <param id="0" name="X">sw_enemy.X+sw_enemy.Width/2-20</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="1550184416476109" type="sw_bubbleE">
+                            <param id="0" name="Pin to">sw_enemy</param>
+                            <param id="1" name="Mode">1</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="3904480066037183" type="sw_enemy">
+                            <param id="0" name="Animation">sw_enemy</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action behavior="8Direction" id="9" name="Set vector X" sid="711376757055734" type="sw_enemy">
+                            <param id="0" name="Vector X">-(-100/(sw_gametime+50)+3)*sw_deafultspeed</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="99596657115802" type="sw_cboxE">
+                            <param id="0" name="Pin to">sw_enemy</param>
+                            <param id="1" name="Mode">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" sid="1586955713053826">
+            <conditions>
+                <condition id="3" name="On touched object" sid="6776021029907495" type="Touch">
+                    <param id="0" name="Object">sw_pauseB</param>
+                </condition>
+                <condition id="0" name="On key pressed" sid="6653504095203935" type="Keyboard">
+                    <param id="0" name="Key">80 (P)</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="4992824775135948">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="1621328826260667" type="sw_pause">
+                            <param id="0" name="Instance variable">isPaused</param>
+                        </condition>
+                        <condition id="-14" name="Compare variable" sid="6339099578323001" type="System">
+                            <param id="0" name="Variable">sw_isEnd</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="6768114426346015" type="System">
+                            <param id="0" name="Variable">sw_timescale</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="6899807068525474" type="sw_pause">
+                            <param id="0" name="Animation">&quot;Pause&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="7601965458134808" type="sw_pause">
+                            <param id="0" name="Instance variable">isPaused</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="7333198404825569" type="sw_ppbg">
+                            <param id="0" name="X">1600</param>
+                            <param id="1" name="Y">800</param>
+                        </action>
+                        <action id="-13" name="Set time scale" sid="2685350845710648" type="System">
+                            <param id="0" name="Time scale">1.0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="1331872028782864">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="2026591841654069" type="System" />
+                        <condition id="-14" name="Compare variable" sid="6853975284008125" type="System">
+                            <param id="0" name="Variable">sw_isEnd</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="3878970790208386" type="System">
+                            <param id="0" name="Variable">sw_timescale</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="4618866419702874" type="sw_pause">
+                            <param id="0" name="Animation">&quot;Play&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="8858295354648867" type="sw_pause">
+                            <param id="0" name="Instance variable">isPaused</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="1598256804816932" type="sw_ppbg">
+                            <param id="0" name="X">640</param>
+                            <param id="1" name="Y">400</param>
+                        </action>
+                        <action id="-13" name="Set time scale" sid="3552912952541829" type="System">
+                            <param id="0" name="Time scale">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="2305765896099088">
+            <conditions>
+                <condition id="0" name="On any touch start" sid="51120653503061" type="Touch" />
+                <condition id="4" inverted="1" name="Is touching object" sid="648656697114104" type="Touch">
+                    <param id="0" name="Object">sw_ppre</param>
+                </condition>
+                <condition id="4" inverted="1" name="Is touching object" sid="8048084109316488" type="Touch">
+                    <param id="0" name="Object">sw_ppmm</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="771231968837096" type="sw_pause">
+                    <param id="0" name="Instance variable">isPaused</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="4199868908626551" type="System">
+                    <param id="0" name="Variable">sw_isEnd</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="9717777701650286" type="System">
+                    <param id="0" name="Variable">sw_timescale</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="4" name="Set animation" sid="7503002674309136" type="sw_pause">
+                    <param id="0" name="Animation">&quot;Pause&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-13" name="Set boolean" sid="6997115856775931" type="sw_pause">
+                    <param id="0" name="Instance variable">isPaused</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-3" name="Set position" sid="5291254383201811" type="sw_ppbg">
+                    <param id="0" name="X">1600</param>
+                    <param id="1" name="Y">800</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="840100984023646" type="System">
+                    <param id="0" name="Time scale">1.0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block any="1" sid="3589190769500974">
+            <conditions>
+                <condition id="3" name="On touched object" sid="9180175896489248" type="Touch">
+                    <param id="0" name="Object">sw_bg</param>
+                </condition>
+                <condition id="0" name="On key pressed" sid="8176681540172821" type="Keyboard">
+                    <param id="0" name="Key">32 (Space)</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="5413929463702081">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="8698681772338419" type="System">
+                            <param id="0" name="Variable">sw_timescale</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="10" name="Set vector Y" sid="9236486671690675" type="sw_cboxP">
+                            <param id="0" name="Vector Y">-300</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="9327384591004774">
+            <conditions>
+                <condition id="0" name="On function" sid="3616495540080843" type="Function">
+                    <param id="0" name="Name">&quot;sw_gg&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="4954684103422326" type="sw_player" />
+                <action id="-9" name="Set value" sid="3784228550523313" type="System">
+                    <param id="0" name="Variable">sw_isEnd</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="1720468252228927" type="System">
+                    <param id="0" name="Time scale">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="2050923732147287" type="System">
+                    <param id="0" name="Variable">sw_timescale</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="5341753661629483" type="System">
+                    <param id="0" name="Variable">sw_isEnd</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-1" name="Set X" sid="5293581963244567" type="sw_gameover_bg">
+                    <param id="0" name="X">640</param>
+                </action>
+                <action id="0" name="Set text" sid="2689337212614455" type="sw_finalscore">
+                    <param id="0" name="Text">sw_score</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="2150396614780431">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="9569683458909799" type="System">
+                            <param id="0" name="First value">main_side</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Post to URL" sid="7941721845388196" type="AJAX">
+                            <param id="0" name="Tag">&quot;incScoreBy&quot;</param>
+                            <param id="1" name="URL">&quot;http://104.131.125.9:8001/incScoreBy&quot;</param>
+                            <param id="2" name="Data">&quot;key=sAmiSdab3sT!&amp;lehigh=&quot;&amp;F_Score&amp;&quot;&amp;laf=0&quot;</param>
+                            <param id="3" name="Method">&quot;POST&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="5725144818926745">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="4903961325242358" type="System">
+                            <param id="0" name="First value">main_side</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Post to URL" sid="8308507862961127" type="AJAX">
+                            <param id="0" name="Tag">&quot;incScoreBy&quot;</param>
+                            <param id="1" name="URL">&quot;http://104.131.125.9:8001/incScoreBy&quot;</param>
+                            <param id="2" name="Data">&quot;key=sAmiSdab3sT!&amp;lehigh=0&amp;laf=&quot;&amp;F_Score</param>
+                            <param id="3" name="Method">&quot;POST&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="9022351134827363">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="7780893589036098" type="System">
+                    <param id="0" name="Interval (seconds)">random(3,7)</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="9822446796687398" type="System">
+                    <param id="0" name="Variable">sw_timescale</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="519071582351404" type="System">
+                    <param id="0" name="Object to create">sw_points</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="X">1280+sw_points.Width/2</param>
+                    <param id="3" name="Y">random(150,700)</param>
+                </action>
+                <action behavior="8Direction" id="9" name="Set vector X" sid="6911201940033893" type="sw_points">
+                    <param id="0" name="Vector X">-500</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7415666014405306">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="5089471767595241" type="System">
+                    <param id="0" name="Interval (seconds)">random(7,15)</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="2614500527751029" type="System">
+                    <param id="0" name="Variable">sw_timescale</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="2989552300958388" type="System">
+                    <param id="0" name="Object to create">sw_invis</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="X">1280+sw_invis.Width/2</param>
+                    <param id="3" name="Y">random(150,700)</param>
+                </action>
+                <action behavior="8Direction" id="9" name="Set vector X" sid="2637850447418652" type="sw_invis">
+                    <param id="0" name="Vector X">-750</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8635681207212927">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="6874821833586648" type="System">
+                    <param id="0" name="Interval (seconds)">random(10,20)</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="3815087963135164" type="System">
+                    <param id="0" name="Variable">sw_timescale</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="6157817647168333" type="System">
+                    <param id="0" name="Object to create">sw_extralife</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="X">1280+sw_extralife.Width/2</param>
+                    <param id="3" name="Y">random(150,700)</param>
+                </action>
+                <action behavior="8Direction" id="9" name="Set vector X" sid="7421841662744173" type="sw_extralife">
+                    <param id="0" name="Vector X">-1200</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8604347378837109">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="3870175291202107" type="sw_cboxP">
+                    <param id="0" name="Object">sw_points</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="5260755840445914" type="System">
+                    <param id="0" name="Variable">sw_score</param>
+                    <param id="1" name="Value">5</param>
+                </action>
+                <action id="-9" name="Destroy" sid="6382310039632803" type="sw_points" />
+            </actions>
+        </event-block>
+        <event-block sid="9977272584050263">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="3261210921726025" type="sw_cboxP">
+                    <param id="0" name="Object">sw_invis</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8290214159584887" type="System">
+                    <param id="0" name="Variable">sw_invistimer</param>
+                    <param id="1" name="Value">5</param>
+                </action>
+                <action id="-16" name="Set opacity" sid="5243795882432421" type="sw_player">
+                    <param id="0" name="Opacity">25</param>
+                </action>
+                <action id="-9" name="Destroy" sid="6553912090164707" type="sw_invis" />
+            </actions>
+        </event-block>
+        <event-block sid="8508984981258075">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="2476481142052408" type="sw_cboxP">
+                    <param id="0" name="Object">sw_extralife</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="5304626463913227" type="System">
+                    <param id="0" name="Variable">sw_lives</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="9753780214837538" type="System">
+                    <param id="0" name="Variable">sw_lives</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="9535696896172189" type="sw_extralife" />
+                <action id="4" name="Set animation" sid="6742064426947635" type="sw_scoreboard">
+                    <param id="0" name="Animation">&quot;L&quot; &amp; sw_lives</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block any="1" sid="9144136410134911">
+            <conditions>
+                <condition id="3" name="On touched object" sid="9320962181822063" type="Touch">
+                    <param id="0" name="Object">sw_restartB</param>
+                </condition>
+                <condition id="3" name="On touched object" sid="18913285531357" type="Touch">
+                    <param id="0" name="Object">sw_ppre</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-26" name="Restart layout" sid="3443292972158667" type="System" />
+            </actions>
+        </event-block>
+        <event-block any="1" sid="8544550288366149">
+            <conditions>
+                <condition id="3" name="On touched object" sid="7535329349324453" type="Touch">
+                    <param id="0" name="Object">sw_quitB</param>
+                </condition>
+                <condition id="3" name="On touched object" sid="8205096195674523" type="Touch">
+                    <param id="0" name="Object">sw_ppmm</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-25" name="Go to layout (by name)" sid="5089138805950483" type="System">
+                    <param id="0" name="Layout">&quot;main&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

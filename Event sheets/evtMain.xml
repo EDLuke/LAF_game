@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>evtMain</name>
+    <events>
+        <variable comment="0 = Lehigh, 1 = Laf" constant="0" name="main_side" sid="132400270413522" static="0" type="number">1</variable>
+        <event-block sid="5484151405130872">
+            <conditions>
+                <condition id="3" name="On touched object" sid="547466667883573" type="Touch">
+                    <param id="0" name="Object">main_LehighB</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="6368975929590738" type="System">
+                    <param id="0" name="Variable">main_side</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="990693462930001" type="main_Locker">
+                    <param id="0" name="Instance variable">ready</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="1952230125084378" type="main_Locker">
+                    <param id="0" name="Instance variable">ready</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="1192810774218393" type="System">
+                    <param id="0" name="Variable">main_side</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="4" name="Set animation" sid="2617026253781574" type="main_Locker">
+                    <param id="0" name="Animation">&quot;Lehigh&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-1" name="Set X" sid="6414225273976882" type="main_LehighB">
+                    <param id="0" name="X">-300</param>
+                </action>
+                <action id="-1" name="Set X" sid="4654357914798701" type="main_LafB">
+                    <param id="0" name="X">1060</param>
+                </action>
+                <action id="-1" name="Set X" sid="3258173630497476" type="main_menuB">
+                    <param id="0" name="X">330</param>
+                </action>
+                <action id="-1" name="Set X" sid="5662897681189781" type="main_button">
+                    <param id="0" name="X">215</param>
+                </action>
+                <action id="-1" name="Set X" sid="7241211156393143" type="main_scoreboard">
+                    <param id="0" name="X">-200</param>
+                </action>
+                <action id="-3" name="Set position" sid="7024124306789566" type="main_givchall">
+                    <param id="0" name="X">575</param>
+                    <param id="1" name="Y">515</param>
+                </action>
+                <action id="-16" name="Wait" sid="8686365774367111" type="System">
+                    <param id="0" name="Seconds">0.2</param>
+                </action>
+                <action id="-10" name="Set value" sid="7417155829388376" type="main_Locker">
+                    <param id="0" name="Instance variable">ready</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4808631025346427">
+            <conditions>
+                <condition id="3" name="On touched object" sid="6374210242944785" type="Touch">
+                    <param id="0" name="Object">main_LafB</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="579406745213585" type="System">
+                    <param id="0" name="Variable">main_side</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="2148121830692361" type="main_Locker">
+                    <param id="0" name="Instance variable">ready</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="3389696107352442" type="main_Locker">
+                    <param id="0" name="Instance variable">ready</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="829459888470928" type="System">
+                    <param id="0" name="Variable">main_side</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="4" name="Set animation" sid="609014093653002" type="main_Locker">
+                    <param id="0" name="Animation">&quot;Laf&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-1" name="Set X" sid="2210071223426044" type="main_LehighB">
+                    <param id="0" name="X">220</param>
+                </action>
+                <action id="-1" name="Set X" sid="2892866248872997" type="main_LafB">
+                    <param id="0" name="X">-300</param>
+                </action>
+                <action id="-1" name="Set X" sid="7458962120699193" type="main_menuB">
+                    <param id="0" name="X">1160</param>
+                </action>
+                <action id="-1" name="Set X" sid="4951272013383033" type="main_button">
+                    <param id="0" name="X">1040</param>
+                </action>
+                <action id="-1" name="Set X" sid="6738972437303826" type="main_scoreboard">
+                    <param id="0" name="X">-200</param>
+                </action>
+                <action id="-3" name="Set position" sid="1761914742982876" type="main_givchall">
+                    <param id="0" name="X">720</param>
+                    <param id="1" name="Y">570</param>
+                </action>
+                <action id="-16" name="Wait" sid="8612715191918176" type="System">
+                    <param id="0" name="Seconds">0.2</param>
+                </action>
+                <action id="-10" name="Set value" sid="9188418185478314" type="main_Locker">
+                    <param id="0" name="Instance variable">ready</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6308426206384233">
+            <conditions>
+                <condition id="3" name="On touched object" sid="323016867249074" type="Touch">
+                    <param id="0" name="Object">main_menuB</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="5519768220038276" type="main_Locker">
+                    <param id="0" name="Instance variable">ready</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="7627370431348278" type="main_Locker">
+                    <param id="0" name="Instance variable">ready</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="5257693055854672" type="System">
+                    <param id="0" name="Variable">main_side</param>
+                    <param id="1" name="Value">-1</param>
+                </action>
+                <action id="4" name="Set animation" sid="5625687416565486" type="main_Locker">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-1" name="Set X" sid="7088515305554574" type="main_LehighB">
+                    <param id="0" name="X">220</param>
+                </action>
+                <action id="-1" name="Set X" sid="7162264346633248" type="main_LafB">
+                    <param id="0" name="X">1060</param>
+                </action>
+                <action id="-1" name="Set X" sid="8001981213385143" type="main_menuB">
+                    <param id="0" name="X">-200</param>
+                </action>
+                <action id="-1" name="Set X" sid="6413785638694628" type="main_button">
+                    <param id="0" name="X">-200</param>
+                </action>
+                <action id="-1" name="Set X" sid="6564988567570663" type="main_scoreboard">
+                    <param id="0" name="X">640</param>
+                </action>
+                <action id="-3" name="Set position" sid="6370283276636316" type="main_givchall">
+                    <param id="0" name="X">-200</param>
+                    <param id="1" name="Y">800</param>
+                </action>
+                <action id="-16" name="Wait" sid="83547182446478" type="System">
+                    <param id="0" name="Seconds">0.2</param>
+                </action>
+                <action id="-10" name="Set value" sid="5748856072398004" type="main_Locker">
+                    <param id="0" name="Instance variable">ready</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8622104086139492">
+            <conditions>
+                <condition id="3" name="On touched object" sid="8394985478847812" type="Touch">
+                    <param id="0" name="Object">main_bB</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="4516519249392689" type="main_Locker">
+                    <param id="0" name="Instance variable">ready</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-25" name="Go to layout (by name)" sid="947684381683964" type="System">
+                    <param id="0" name="Layout">&quot;Basketball&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2261114555630326">
+            <conditions>
+                <condition id="3" name="On touched object" sid="3080132795118919" type="Touch">
+                    <param id="0" name="Object">main_swB</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="3783614693847748" type="main_Locker">
+                    <param id="0" name="Instance variable">ready</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-25" name="Go to layout (by name)" sid="1469038460796362" type="System">
+                    <param id="0" name="Layout">&quot;Swimming&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6843248636913641">
+            <conditions>
+                <condition id="3" name="On touched object" sid="4768392161096735" type="Touch">
+                    <param id="0" name="Object">main_fB</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="4791710572236683" type="main_Locker">
+                    <param id="0" name="Instance variable">ready</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-25" name="Go to layout (by name)" sid="53754864505009" type="System">
+                    <param id="0" name="Layout">&quot;Football&quot;</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="2200488475106691">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="5392932165985619" type="System">
+                            <param id="0" name="Variable">main_side</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="5900412285268285" type="System">
+                            <param id="0" name="Variable">F_EnemyTeam</param>
+                            <param id="1" name="Value">&quot;Laf&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="7836335176877382">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="1146063117902002" type="System">
+                            <param id="0" name="Variable">main_side</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="8933668900703176" type="System">
+                            <param id="0" name="Variable">F_EnemyTeam</param>
+                            <param id="1" name="Value">&quot;Lehigh&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="5398893246421485">
+            <conditions>
+                <condition id="3" name="On touched object" sid="8643878435473461" type="Touch">
+                    <param id="0" name="Object">main_sB</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="7101700923038334" type="main_Locker">
+                    <param id="0" name="Instance variable">ready</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-25" name="Go to layout (by name)" sid="9625872681230162" type="System">
+                    <param id="0" name="Layout">&quot;Soccer&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5751179523994442">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="6369823932087832" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8829863160203036" type="System">
+                    <param id="0" name="Variable">main_side</param>
+                    <param id="1" name="Value">-1</param>
+                </action>
+                <action id="-10" name="Set value" sid="1707546735629575" type="main_Locker">
+                    <param id="0" name="Instance variable">ready</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="2154950478818403" type="System">
+                    <param id="0" name="Time scale">1.0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7811706286945892">
+            <conditions>
+                <condition id="3" name="On touched object" sid="1008102476818585" type="Touch">
+                    <param id="0" name="Object">main_scoreboard</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="8" name="Open URL in new window" sid="1665582977007303" type="Browser">
+                    <param id="0" name="URL">&quot;http://104.131.125.9:3001&quot;</param>
+                    <param id="1" name="Tag">&quot;Scoreboard&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1303235758809187">
+            <conditions>
+                <condition id="3" name="On touched object" sid="5262426912155461" type="Touch">
+                    <param id="0" name="Object">main_givchall</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="8" name="Open URL in new window" sid="9173853997870786" type="Browser">
+                    <param id="0" name="URL">&quot;http://www.llchallenge.com/&quot;</param>
+                    <param id="1" name="Tag">&quot;giving challenge&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
