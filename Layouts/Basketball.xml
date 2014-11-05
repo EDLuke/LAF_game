@@ -355,11 +355,11 @@
                                 <active-on-start>Yes</active-on-start>
                                 <movement>Vertical</movement>
                                 <wave>Sine</wave>
-                                <period>1</period>
+                                <period>3.5</period>
                                 <period-random>0</period-random>
                                 <period-offset>0</period-offset>
                                 <period-offset-random>0</period-offset-random>
-                                <magnitude>65</magnitude>
+                                <magnitude>80</magnitude>
                                 <magnitude-random>0</magnitude-random>
                             </properties>
                         </behavior-instance>
@@ -368,7 +368,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>1238</x>
-                        <y>223</y>
+                        <y>350</y>
                         <z>0</z>
                         <width>82.837112427</width>
                         <height>402.355895996</height>
@@ -407,7 +407,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>1078</x>
-                        <y>294</y>
+                        <y>421</y>
                         <z>0</z>
                         <width>3.553075314</width>
                         <height>9.458427429</height>
@@ -437,7 +437,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>1158</x>
-                        <y>289</y>
+                        <y>416</y>
                         <z>0</z>
                         <width>168.57244873</width>
                         <height>24.902746201</height>
@@ -505,7 +505,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>1157</x>
-                        <y>306</y>
+                        <y>433</y>
                         <z>0</z>
                         <width>168.572006226</width>
                         <height>24.902999878</height>
@@ -530,7 +530,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>1158</x>
-                        <y>292</y>
+                        <y>419</y>
                         <z>0</z>
                         <width>166.578994751</width>
                         <height>151.550003052</height>
@@ -555,7 +555,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>1165</x>
-                        <y>286</y>
+                        <y>413</y>
                         <z>0</z>
                         <width>166.579223633</width>
                         <height>151.549514771</height>
@@ -594,7 +594,7 @@
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>1238</x>
-                        <y>295</y>
+                        <y>422</y>
                         <z>0</z>
                         <width>3.553075314</width>
                         <height>9.458427429</height>
@@ -1039,8 +1039,8 @@
                         <x>640</x>
                         <y>400</y>
                         <z>0</z>
-                        <width>579</width>
-                        <height>365</height>
+                        <width>1280</width>
+                        <height>800</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>

@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>evtBasketball</name>
     <events>
+        <variable constant="0" name="bak_timeshot" sid="4273302850021798" static="0" type="number">0</variable>
         <variable constant="0" name="bak_isEnd" sid="6156643562175644" static="0" type="number">0</variable>
         <comment>Whoever is merging please delete this and use the one in mainmanu!!!!</comment>
         <variable constant="0" name="bak_resetBall" sid="6513887266503141" static="0" type="number">0</variable>
@@ -233,6 +234,10 @@
                         <action id="-19" name="Rotate counter-clockwise" sid="4624492687303568" type="bak_ballNormal">
                             <param id="0" name="Degrees">dt</param>
                         </action>
+                        <action id="-9" name="Set value" sid="4898887182158522" type="System">
+                            <param id="0" name="Variable">bak_timeshot</param>
+                            <param id="1" name="Value">bak_timerLeft</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>
@@ -431,7 +436,7 @@
                     <param id="1" name="Value">-ceil(dt)</param>
                 </action>
                 <action id="0" name="Set text" sid="7301103188311071" type="bak_timer">
-                    <param id="0" name="Text">floor(bak_timerLeft/60)</param>
+                    <param id="0" name="Text">ceil(bak_timerLeft/60)</param>
                 </action>
                 <action id="0" name="Set text" sid="8226696184180717" type="bak_score">
                     <param id="0" name="Text">bak_score</param>
@@ -576,7 +581,7 @@
                     <param id="1" name="Value">1</param>
                 </action>
                 <action behavior="Sine" id="1" name="Set period" sid="2917879568608745" type="bak_backBoard">
-                    <param id="0" name="Period">random(0.75,2.25)</param>
+                    <param id="0" name="Period">random(2.75, 4)</param>
                 </action>
             </actions>
         </event-block>
@@ -910,7 +915,7 @@
                 </action>
                 <action id="-10" name="Add to" sid="7608062240217144" type="System">
                     <param id="0" name="Variable">bak_timerLeft</param>
-                    <param id="1" name="Value">300</param>
+                    <param id="1" name="Value">bak_timeshot - bak_timerLeft + 180</param>
                 </action>
                 <action id="-15" name="Set visible" sid="1214961646737886" type="bak_basketNet">
                     <param id="0" name="Visibility">0</param>

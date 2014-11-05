@@ -1048,7 +1048,7 @@
                                 <condition id="-14" name="Compare variable" sid="8530111589256992" type="System">
                                     <param id="0" name="Variable">F_numEnemies</param>
                                     <param id="1" name="Comparison">3</param>
-                                    <param id="2" name="Value">floor(0.25*(F_numDumbLimit + F_numFastLimit +F_numOddLimit +F_numSmartLimit +F_numBigLimit))</param>
+                                    <param id="2" name="Value">floor(0.2*(F_numDumbLimit + F_numFastLimit +F_numOddLimit +F_numSmartLimit +F_numBigLimit))</param>
                                 </condition>
                             </conditions>
                             <actions>

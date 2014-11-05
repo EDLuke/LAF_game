@@ -580,17 +580,15 @@
         </event-block>
         <event-block sid="8273062694909066">
             <conditions>
-                <condition id="-6" name="Every X seconds" sid="9075739559523081" type="System">
-                    <param id="0" name="Interval (seconds)">1</param>
-                </condition>
+                <condition id="-1" name="Every tick" sid="9075739559523081" type="System" />
             </conditions>
             <actions>
                 <action id="-11" name="Subtract from" sid="5539136117974897" type="System">
                     <param id="0" name="Variable">soccer_timer</param>
-                    <param id="1" name="Value">1</param>
+                    <param id="1" name="Value">dt</param>
                 </action>
                 <action id="0" name="Set text" sid="1394526051065186" type="soccer_timer">
-                    <param id="0" name="Text">soccer_timer</param>
+                    <param id="0" name="Text">ceil(soccer_timer)</param>
                 </action>
             </actions>
         </event-block>

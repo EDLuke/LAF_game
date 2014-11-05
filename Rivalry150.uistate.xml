@@ -16,9 +16,9 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <layout>Football</layout>
         <layout>Swimming</layout>
         <event-sheet>evtMain</event-sheet>
-        <event-sheet>evtFootball</event-sheet>
+        <event-sheet active="1">evtFootball</event-sheet>
         <event-sheet>evtSoccer</event-sheet>
-        <event-sheet active="1">evtBasketball</event-sheet>
+        <event-sheet>evtBasketball</event-sheet>
         <event-sheet>evtSwimming</event-sheet>
     </open-tabs>
     <properties>
