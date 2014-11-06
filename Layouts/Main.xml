@@ -340,8 +340,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>743</x>
-                        <y>632</y>
+                        <x>606</x>
+                        <y>659</y>
                         <z>0</z>
                         <width>67</width>
                         <height>57</height>
@@ -355,7 +355,7 @@
                         <type>Button</type>
                         <text>OK</text>
                         <tooltip></tooltip>
-                        <initial-visibility>Invisible</initial-visibility>
+                        <initial-visibility>Visible</initial-visibility>
                         <enabled>Yes</enabled>
                         <auto-font-size>Yes</auto-font-size>
                         <id-optional></id-optional>
