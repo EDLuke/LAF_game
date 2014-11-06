@@ -13,6 +13,8 @@
         <plugin author="Scirra" id="AJAX" version="1">AJAX</plugin>
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
+        <plugin author="Scirra" id="Button" version="1">Button</plugin>
+        <plugin author="Scirra" id="Facebook" version="1">Facebook</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
@@ -22,6 +24,7 @@
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
         <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
+        <plugin author="Scirra" id="Twitter" version="1">Twitter</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
@@ -3887,6 +3890,18 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="version" sid="5872123609102931">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Twitter" sid="18506425524507">
+            <plugin id="Twitter" />
+        </object-type>
+        <object-type name="Facebook" sid="4623130152437977">
+            <plugin id="Facebook" />
+        </object-type>
+        <object-type name="main_facebook" sid="5636468622797067">
+            <plugin id="Button" />
+        </object-type>
     </object-folder>
     <families>
         <family name="EnemyCB" plugin-id="Sprite" sid="7403292170101718">
@@ -3977,12 +3992,20 @@
         </global-instance>
         <global-instance type="AJAX" uid="5" />
         <global-instance type="Browser" uid="69" />
+        <global-instance type="Facebook" uid="146">
+            <properties>
+                <app-id>1550323375180354</app-id>
+                <app-secret></app-secret>
+            </properties>
+        </global-instance>
     </global-instances>
     <sounds-folder>
-        <file name="Basketball_bounce_sound_effect.m4a" />
         <file name="Basketball_bounce_sound_effect.ogg" />
-        <file name="Swish.m4a" />
         <file name="Swish.ogg" />
+        <file name="laf_fight_song.ogg" />
+        <file name="leh_fight_song.ogg" />
+        <file name="soccer_kick.m4a" />
+        <file name="soccer_kick.ogg" />
     </sounds-folder>
     <music-folder />
     <files-folder>

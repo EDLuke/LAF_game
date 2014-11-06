@@ -101,6 +101,10 @@
                 <action id="-13" name="Set time scale" sid="9108509745041651" type="System">
                     <param id="0" name="Time scale">0</param>
                 </action>
+                <action id="22" name="Set paused" sid="5724706923892815" type="Audio">
+                    <param id="0" name="Tag">&quot;bgm&quot;</param>
+                    <param id="1" name="State">1</param>
+                </action>
             </actions>
             <sub-events>
                 <event-block sid="1403008742447893">
@@ -579,6 +583,10 @@
                         <action id="-13" name="Set time scale" sid="2685350845710648" type="System">
                             <param id="0" name="Time scale">1.0</param>
                         </action>
+                        <action id="22" name="Set paused" sid="8683067028556421" type="Audio">
+                            <param id="0" name="Tag">&quot;bgm&quot;</param>
+                            <param id="1" name="State">1</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="1331872028782864">
@@ -609,6 +617,10 @@
                         </action>
                         <action id="-13" name="Set time scale" sid="3552912952541829" type="System">
                             <param id="0" name="Time scale">0</param>
+                        </action>
+                        <action id="22" name="Set paused" sid="932965761323133" type="Audio">
+                            <param id="0" name="Tag">&quot;bgm&quot;</param>
+                            <param id="1" name="State">0</param>
                         </action>
                     </actions>
                 </event-block>
@@ -651,6 +663,10 @@
                 </action>
                 <action id="-13" name="Set time scale" sid="840100984023646" type="System">
                     <param id="0" name="Time scale">1.0</param>
+                </action>
+                <action id="22" name="Set paused" sid="545551861460567" type="Audio">
+                    <param id="0" name="Tag">&quot;bgm&quot;</param>
+                    <param id="1" name="State">1</param>
                 </action>
             </actions>
         </event-block>
@@ -709,6 +725,10 @@
                 </action>
                 <action id="0" name="Set text" sid="2689337212614455" type="sw_finalscore">
                     <param id="0" name="Text">sw_score</param>
+                </action>
+                <action id="22" name="Set paused" sid="3333952161128618" type="Audio">
+                    <param id="0" name="Tag">&quot;bgm&quot;</param>
+                    <param id="1" name="State">0</param>
                 </action>
             </actions>
             <sub-events>

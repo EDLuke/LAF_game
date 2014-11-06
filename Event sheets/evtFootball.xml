@@ -124,7 +124,7 @@
                             <param id="1" name="Value">F_chargeCD</param>
                         </action>
                         <action id="-16" name="Wait" sid="9779570862135561" type="System">
-                            <param id="0" name="Seconds">2 + (F_gametime - F_Player.timeLastCharged)*0.005</param>
+                            <param id="0" name="Seconds">2.25 + (F_gametime - F_Player.timeLastCharged)*0.02</param>
                         </action>
                         <action id="-9" name="Destroy" sid="8766144269111641" type="F_wind" />
                         <action id="6" name="Set speed" sid="8370230405517586" type="F_Player">
@@ -244,6 +244,10 @@
                             <param id="0" name="X">1600</param>
                             <param id="1" name="Y">800</param>
                         </action>
+                        <action id="22" name="Set paused" sid="740944540056445" type="Audio">
+                            <param id="0" name="Tag">&quot;bgm&quot;</param>
+                            <param id="1" name="State">1</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="6089635345834229">
@@ -274,6 +278,10 @@
                         <action id="-3" name="Set position" sid="8966828275685748" type="F_ppbg">
                             <param id="0" name="X">640</param>
                             <param id="1" name="Y">400</param>
+                        </action>
+                        <action id="22" name="Set paused" sid="1240158568990657" type="Audio">
+                            <param id="0" name="Tag">&quot;bgm&quot;</param>
+                            <param id="1" name="State">0</param>
                         </action>
                     </actions>
                 </event-block>
@@ -316,6 +324,10 @@
                 <action id="-3" name="Set position" sid="9492370766208909" type="F_ppbg">
                     <param id="0" name="X">1600</param>
                     <param id="1" name="Y">800</param>
+                </action>
+                <action id="22" name="Set paused" sid="5224888468382133" type="Audio">
+                    <param id="0" name="Tag">&quot;bgm&quot;</param>
+                    <param id="1" name="State">1</param>
                 </action>
             </actions>
         </event-block>
@@ -1519,6 +1531,10 @@
                 <action id="0" name="Set text" sid="7077064938976199" type="F_Distance">
                     <param id="0" name="Text">F_finalscore.Text</param>
                 </action>
+                <action id="22" name="Set paused" sid="7987585315264039" type="Audio">
+                    <param id="0" name="Tag">&quot;bgm&quot;</param>
+                    <param id="1" name="State">0</param>
+                </action>
             </actions>
             <sub-events>
                 <event-block sid="3249402962826119">
@@ -1657,6 +1673,10 @@
                 <action behavior="Pin" id="0" name="Pin to object" sid="371089597753991" type="F_ppre">
                     <param id="0" name="Pin to">F_ppbg</param>
                     <param id="1" name="Mode">1</param>
+                </action>
+                <action id="22" name="Set paused" sid="510883000539153" type="Audio">
+                    <param id="0" name="Tag">&quot;bgm&quot;</param>
+                    <param id="1" name="State">1</param>
                 </action>
             </actions>
             <sub-events>

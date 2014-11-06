@@ -100,8 +100,11 @@
                     <param id="0" name="Variable">soccer_currentY</param>
                     <param id="1" name="Value">0</param>
                 </action>
-                <action id="-9" name="Destroy" sid="7922134062329014" type="soccer_simpleTarget" />
                 <action id="-9" name="Destroy" sid="6498859380894068" type="soccer_ball" />
+                <action id="22" name="Set paused" sid="4912852293231765" type="Audio">
+                    <param id="0" name="Tag">&quot;bgm&quot;</param>
+                    <param id="1" name="State">1</param>
+                </action>
             </actions>
         </event-block>
         <comment>Hide all targets</comment>
@@ -304,6 +307,12 @@
                 <action id="-9" name="Set value" sid="6805274311122872" type="System">
                     <param id="0" name="Variable">soccer_wasTouching</param>
                     <param id="1" name="Value">0</param>
+                </action>
+                <action id="0" name="Play" sid="3431967433914393" type="Audio">
+                    <param id="0" name="Audio file">soccer_kick</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
                 </action>
             </actions>
         </event-block>
@@ -716,6 +725,10 @@
                 <action id="0" name="Set text" sid="5055278532081158" type="soccer_finalScore">
                     <param id="0" name="Text">soccer_scoreN</param>
                 </action>
+                <action id="22" name="Set paused" sid="8955804336610134" type="Audio">
+                    <param id="0" name="Tag">&quot;bgm&quot;</param>
+                    <param id="1" name="State">0</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="1384801119064235">
@@ -752,6 +765,10 @@
                     <param id="0" name="X">1600</param>
                     <param id="1" name="Y">800</param>
                 </action>
+                <action id="22" name="Set paused" sid="8979266813200241" type="Audio">
+                    <param id="0" name="Tag">&quot;bgm&quot;</param>
+                    <param id="1" name="State">1</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="7332948151122213">
@@ -785,6 +802,11 @@
                             <param id="0" name="X">1600</param>
                             <param id="1" name="Y">800</param>
                         </action>
+                        <action id="22" name="Set paused" sid="7718900480679006" type="Audio">
+                            <param id="0" name="Tag">&quot;bgm&quot;</param>
+                            <param id="1" name="State">1</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="7922134062329014" type="soccer_simpleTarget" />
                     </actions>
                 </event-block>
                 <event-block sid="2574503714580165">
@@ -803,6 +825,10 @@
                         <action id="-3" name="Set position" sid="6394892341962142" type="soccer_ppbg">
                             <param id="0" name="X">640</param>
                             <param id="1" name="Y">400</param>
+                        </action>
+                        <action id="22" name="Set paused" sid="6215268483200944" type="Audio">
+                            <param id="0" name="Tag">&quot;bgm&quot;</param>
+                            <param id="1" name="State">0</param>
                         </action>
                     </actions>
                 </event-block>

@@ -110,6 +110,10 @@
                     <param id="0" name="Variable">bak_isEnd</param>
                     <param id="1" name="Value">1</param>
                 </action>
+                <action id="22" name="Set paused" sid="9882749208607984" type="Audio">
+                    <param id="0" name="Tag">&quot;bgm&quot;</param>
+                    <param id="1" name="State">1</param>
+                </action>
             </actions>
         </event-block>
         <event-block sid="7061449418450054">
@@ -499,6 +503,10 @@
                 <action id="-9" name="Set value" sid="4453465127525471" type="System">
                     <param id="0" name="Variable">F_isEnd</param>
                     <param id="1" name="Value">1</param>
+                </action>
+                <action id="22" name="Set paused" sid="4621239343487118" type="Audio">
+                    <param id="0" name="Tag">&quot;bgm&quot;</param>
+                    <param id="1" name="State">0</param>
                 </action>
             </actions>
         </event-block>
@@ -984,6 +992,10 @@
                             <param id="0" name="Instance variable">isPaused</param>
                             <param id="1" name="Value">1</param>
                         </action>
+                        <action id="22" name="Set paused" sid="2662001261799486" type="Audio">
+                            <param id="0" name="Tag">&quot;bgm&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="4463198225717069">
@@ -1014,6 +1026,10 @@
                         </action>
                         <action id="-13" name="Set time scale" sid="8312084482362293" type="System">
                             <param id="0" name="Time scale">1</param>
+                        </action>
+                        <action id="22" name="Set paused" sid="6557448317518953" type="Audio">
+                            <param id="0" name="Tag">&quot;bgm&quot;</param>
+                            <param id="1" name="State">1</param>
                         </action>
                     </actions>
                 </event-block>
@@ -1054,6 +1070,10 @@
                 </action>
                 <action id="-13" name="Set time scale" sid="7591546204323355" type="System">
                     <param id="0" name="Time scale">1</param>
+                </action>
+                <action id="22" name="Set paused" sid="2361391181338894" type="Audio">
+                    <param id="0" name="Tag">&quot;bgm&quot;</param>
+                    <param id="1" name="State">1</param>
                 </action>
             </actions>
         </event-block>
