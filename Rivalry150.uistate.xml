@@ -10,7 +10,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <display name="HTML5" />
     </configurations>
     <open-tabs>
-        <layout active="1">Main</layout>
+        <layout>Main</layout>
         <layout>Basketball</layout>
         <layout>Soccer</layout>
         <layout>Football</layout>
@@ -19,7 +19,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <event-sheet>evtFootball</event-sheet>
         <event-sheet>evtSoccer</event-sheet>
         <event-sheet>evtBasketball</event-sheet>
-        <event-sheet>evtSwimming</event-sheet>
+        <event-sheet active="1">evtSwimming</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -167,5 +167,6 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/soccer_guideB/" />
         <folder expanded="1" path="animation-folder/bak_bg/" />
         <folder expanded="1" path="animation-folder/soccer_pauseB/" />
+        <folder expanded="1" path="animation-folder/main_facebookBtn/" />
     </folders-expanded>
 </c2uistate>

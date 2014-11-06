@@ -3902,6 +3902,14 @@
         <object-type name="main_facebook" sid="5636468622797067">
             <plugin id="Button" />
         </object-type>
+        <object-type name="main_facebookBtn" sid="6658294855990954">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="7845703199062148" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families>
         <family name="EnemyCB" plugin-id="Sprite" sid="7403292170101718">

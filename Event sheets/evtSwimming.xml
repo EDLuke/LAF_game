@@ -741,10 +741,10 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="2" name="Post to URL" sid="7941721845388196" type="AJAX">
+                        <action id="2" name="Post to URL" sid="9890851590398297" type="AJAX">
                             <param id="0" name="Tag">&quot;incScoreBy&quot;</param>
                             <param id="1" name="URL">&quot;http://104.131.125.9:8001/incScoreBy&quot;</param>
-                            <param id="2" name="Data">&quot;key=sAmiSdab3sT!&amp;lehigh=&quot;&amp;F_Score&amp;&quot;&amp;laf=0&quot;</param>
+                            <param id="2" name="Data">&quot;key=sAmiSdab3sT!&amp;game=swimming&amp;side=lehigh&amp;score=&quot;&amp;sw_score</param>
                             <param id="3" name="Method">&quot;POST&quot;</param>
                         </action>
                     </actions>
@@ -761,7 +761,7 @@
                         <action id="2" name="Post to URL" sid="8308507862961127" type="AJAX">
                             <param id="0" name="Tag">&quot;incScoreBy&quot;</param>
                             <param id="1" name="URL">&quot;http://104.131.125.9:8001/incScoreBy&quot;</param>
-                            <param id="2" name="Data">&quot;key=sAmiSdab3sT!&amp;lehigh=0&amp;laf=&quot;&amp;F_Score</param>
+                            <param id="2" name="Data">&quot;key=sAmiSdab3sT!&amp;game=swimming&amp;side=laf&amp;score=&quot;&amp;sw_score</param>
                             <param id="3" name="Method">&quot;POST&quot;</param>
                         </action>
                     </actions>

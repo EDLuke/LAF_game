@@ -328,50 +328,48 @@
                 <instance type="Twitter" uid="113">
                     <properties>
                         <type>Share</type>
-                        <share>http://gamelocker150.com</share>
+                        <share>Rivalry150</share>
                         <text>Support the Rivalry!</text>
                         <via></via>
-                        <hashtags>Rivalry150</hashtags>
+                        <hashtags>Rivalry150, gamelocker150</hashtags>
                         <initial-visibility>Visible</initial-visibility>
                         <count>Horizontal</count>
-                        <size>Medium</size>
+                        <size>Large</size>
                         <language>en</language>
                     </properties>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
                         <x>606</x>
-                        <y>659</y>
+                        <y>661</y>
                         <z>0</z>
-                        <width>67</width>
-                        <height>57</height>
+                        <width>105</width>
+                        <height>50</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
                     </world>
                 </instance>
-                <instance type="main_facebook" uid="152">
+                <instance type="main_facebookBtn" uid="158">
                     <properties>
-                        <type>Button</type>
-                        <text>OK</text>
-                        <tooltip></tooltip>
-                        <initial-visibility>Visible</initial-visibility>
-                        <enabled>Yes</enabled>
-                        <auto-font-size>Yes</auto-font-size>
-                        <id-optional></id-optional>
-                        <checked>No</checked>
+                        <initial-visibility>Invisible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
                     </properties>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>547</x>
-                        <y>659</y>
+                        <x>571.5</x>
+                        <y>685</y>
                         <z>0</z>
-                        <width>47</width>
-                        <height>53</height>
+                        <width>45</width>
+                        <height>46</height>
                         <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
                     </world>
                 </instance>
             </instances>

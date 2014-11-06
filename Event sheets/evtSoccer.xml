@@ -730,6 +730,44 @@
                     <param id="1" name="State">0</param>
                 </action>
             </actions>
+            <sub-events>
+                <event-block sid="8202327557090225">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="9840272680758773" type="System">
+                            <param id="0" name="First value">F_EnemyTeam</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">&quot;Lehigh&quot;</param>
+                        </condition>
+                        <condition id="-4" name="Trigger once while true" sid="9035483072548038" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Post to URL" sid="6089943542547004" type="AJAX">
+                            <param id="0" name="Tag">&quot;incScoreBy&quot;</param>
+                            <param id="1" name="URL">&quot;http://104.131.125.9:8001/incScoreBy&quot;</param>
+                            <param id="2" name="Data">&quot;key=sAmiSdab3sT!&amp;game=soccer&amp;side=laf&amp;score=&quot;&amp;soccer_scoreN</param>
+                            <param id="3" name="Method">&quot;POST&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="946138842425951">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="3916443589154533" type="System">
+                            <param id="0" name="First value">F_EnemyTeam</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">&quot;Laf&quot;</param>
+                        </condition>
+                        <condition id="-4" name="Trigger once while true" sid="5643060293858017" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="2" name="Post to URL" sid="2477671518483755" type="AJAX">
+                            <param id="0" name="Tag">&quot;incScoreBy&quot;</param>
+                            <param id="1" name="URL">&quot;http://104.131.125.9:8001/incScoreBy&quot;</param>
+                            <param id="2" name="Data">&quot;key=sAmiSdab3sT!&amp;game=soccer&amp;side=lehigh&amp;score=&quot;&amp;soccer_scoreN</param>
+                            <param id="3" name="Method">&quot;POST&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <event-block sid="1384801119064235">
             <conditions>

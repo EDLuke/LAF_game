@@ -21,6 +21,9 @@
                 </condition>
             </conditions>
             <actions>
+                <action id="0" name="Set visible" sid="2730309326638661" type="Twitter">
+                    <param id="0" name="Visibility">0</param>
+                </action>
                 <action id="-10" name="Set value" sid="1952230125084378" type="main_Locker">
                     <param id="0" name="Instance variable">ready</param>
                     <param id="1" name="Value">0</param>
@@ -85,6 +88,9 @@
                 </condition>
             </conditions>
             <actions>
+                <action id="0" name="Set visible" sid="3438204044660318" type="Twitter">
+                    <param id="0" name="Visibility">0</param>
+                </action>
                 <action id="-10" name="Set value" sid="3389696107352442" type="main_Locker">
                     <param id="0" name="Instance variable">ready</param>
                     <param id="1" name="Value">0</param>
@@ -144,6 +150,9 @@
                 </condition>
             </conditions>
             <actions>
+                <action id="0" name="Set visible" sid="8235682759234803" type="Twitter">
+                    <param id="0" name="Visibility">1</param>
+                </action>
                 <action id="-10" name="Set value" sid="7627370431348278" type="main_Locker">
                     <param id="0" name="Instance variable">ready</param>
                     <param id="1" name="Value">0</param>
@@ -350,7 +359,9 @@
         </event-block>
         <event-block sid="5731349627986215">
             <conditions>
-                <condition id="0" name="On clicked" sid="8035534031453054" type="main_facebook" />
+                <condition id="3" name="On touched object" sid="8035534031453054" type="Touch">
+                    <param id="0" name="Object">main_facebookBtn</param>
+                </condition>
                 <condition id="1" inverted="1" name="Is user logged in" sid="5314599782034344" type="Facebook" />
             </conditions>
             <actions>
@@ -358,26 +369,21 @@
                     <param id="0" name="Stream permission">0</param>
                     <param id="1" name="Action permission">0</param>
                 </action>
-                <action id="0" name="Set text" sid="5192250552103697" type="main_facebook">
-                    <param id="0" name="Text">&quot;YOLO&quot;</param>
-                </action>
             </actions>
         </event-block>
         <event-block sid="9071758563947516">
             <conditions>
-                <condition id="0" name="On clicked" sid="2375480177499998" type="main_facebook" />
+                <condition id="3" name="On touched object" sid="2375480177499998" type="Touch">
+                    <param id="0" name="Object">main_facebookBtn</param>
+                </condition>
                 <condition id="1" name="Is user logged in" sid="7263905005391923" type="Facebook" />
             </conditions>
             <actions>
-                <action disabled="1" id="4" name="Prompt wall post" sid="45085301204108" type="Facebook" />
                 <action id="5" name="Prompt to share this app" sid="3270956521213361" type="Facebook">
                     <param id="0" name="Name">&quot;GameLocker150&quot;</param>
                     <param id="1" name="Caption">&quot;I love this game so mux!!!&quot;</param>
                     <param id="2" name="Description">&quot;Games for Rivalry150 Lehigh_Laffayette&quot;</param>
                     <param id="3" name="Picture URL (optional)">&quot;&quot;</param>
-                </action>
-                <action id="0" name="Set text" sid="4519785518204688" type="main_facebook">
-                    <param id="0" name="Text">&quot;YOLO2&quot;</param>
                 </action>
             </actions>
         </event-block>
